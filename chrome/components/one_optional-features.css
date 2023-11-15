@@ -1,0 +1,234 @@
+/* Source file made available under Mozilla Public License v. 2.0 See the main repository for updates as well as full license text. 
+   https://github.com/Godiesc/firefox-one */
+
+/* ____________________________ Selected tab gradient border on solid themes ____________________________ */
+
+@supports -moz-bool-pref("floorpone.selected-tab-gradient-border") {
+
+    /* Sobreescribir lines from one_tabs-bar.css */
+    #tabbrowser-tabs:is([movingtab]) .tabbrowser-tab[selected="true"] .tab-content{
+        background-color: initial !important;
+    }    
+    :root:not([lwtheme-image],[style*="--lwt-additional-images"]) .tabbrowser-tab[selected="true"]:not([multiselected]) .tab-stack {
+        box-shadow: none !important;
+    }
+    :root:not([chromehidden~="toolbar"]):is([lwtheme-image],[style*="--lwt-additional-images"]) tab[selected] .tab-background{
+        outline: none !important;
+    }
+    
+    /* new color for selected tab */
+    :root:not([style*="--lwt-additional-images"],[lwtheme-image]){
+        --lwt-selected-tab-background-color: var(--toolbar-bgcolor) !important;
+    }
+    
+    /* Fix for container line position in selected tab */
+    .tabbrowser-tab[selected] .tab-context-line{ 
+        margin: 2px 0 0 1px !important;
+        transition: 0ms !important;
+    }
+
+     .tab-background[selected]{
+        outline: none !important;
+        border: 1px solid transparent !important;
+        box-shadow: none !important;
+        background-clip: padding-box;
+        border-radius: 5px !important;
+        z-index: 2 !important;
+    }
+    
+     .tabbrowser-tab[selected] > .tab-stack::before{
+        content: "";
+        display: flex;
+        min-height: inherit;
+        border-radius: var(--tab-border-radius);
+        grid-area: 1/1;
+        margin-block: var(--tab-block-margin);
+        background: linear-gradient(165deg,
+        var(--gradient-colors)) !important;
+        z-index: 1 !important;
+    }
+}
+
+/* ___________________________________________ Image in menus ___________________________________________ */
+
+@supports -moz-bool-pref("floorpone.image-in-menus") {
+    
+    /* Image for solid themes */    
+    :root:not([style*="--lwt-additional-images"],[lwtheme-image]) :is(slot, panelview, menupopup),
+    :root:not([style*="--lwt-additional-images"],[lwtheme-image]):is([sizemode="maximized"]) #PanelUI-menu-button{
+        --lwt-header-image: url("../images/newtab/menu-image.png") !important;
+    }
+
+    @media (prefers-color-scheme: dark){
+        :root:is([style*="--lwt-additional-images"],[lwtheme-image]),
+        :root:not([style*="--lwt-additional-images"],[lwtheme-image]){
+            --arrowpanel-background: #101019d0 !important;
+    }}
+
+    @media (prefers-color-scheme: light){
+        :root:is([style*="--lwt-additional-images"],[lwtheme-image]),
+        :root:not([style*="--lwt-additional-images"],[lwtheme-image]){
+            --arrowpanel-background: #f9f9f9d0 !important;
+    }}
+
+    .menupopup-arrowscrollbox, slot, panelview {
+        background-image: linear-gradient(var(--arrowpanel-background, transparent), var(--arrowpanel-background, transparent)), 
+                          linear-gradient(transparent, transparent), 
+                          var(--lwt-header-image, var(--lwt-additional-images, none)) !important;
+        background-size: auto 100vh !important;
+        background-position: -1px -1px !important;
+    }
+
+    @media (-moz-platform: windows), (-moz-platform: linux) {
+        :root:not([chromehidden~="toolbar"]):is([sizemode="maximized"]) #PanelUI-menu-button[open]>.toolbarbutton-badge-stack,
+        :root:not([chromehidden~="toolbar"]):is([sizemode="maximized"]) #PanelUI-menu-button[open]>stack::after{
+            background-image: linear-gradient(var(--arrowpanel-background, transparent), var(--arrowpanel-background, transparent)), 
+                              linear-gradient(transparent, transparent), 
+                              var(--lwt-header-image, var(--lwt-additional-images, none)) !important;
+            background-size: auto 100vh !important;
+            background-position-x: 0px !important;
+            background-position-y: -8px !important;
+    }}
+    
+    @media (-moz-platform: windows), (-moz-platform: linux) {
+        :root:not([chromehidden~="toolbar"]):is([sizemode="maximized"]) #PanelUI-menu-button[open]>stack::after{
+            background-position-x: calc(0px - var(--my-vertical-toolbar-width, 0) + var(--margin-left-icons-personal)*2) !important;
+            background-position-y: -10px !important;
+    }}
+    
+    /* Alinear imagen con floorp-sidebar deshabilitada */
+
+    @media (-moz-platform: windows), (-moz-platform: linux) {
+        :root[invisibleBMS]:not([chromehidden~="toolbar"]):is([sizemode="maximized"]) #PanelUI-menu-button[open]>.toolbarbutton-badge-stack,
+        :root[invisibleBMS]:not([chromehidden~="toolbar"]):is([sizemode="maximized"]) #PanelUI-menu-button[open]>stack::after{
+            background-position-x: 0px !important;
+            background-position-y: -2px !important;
+        }
+        :root[invisibleBMS]:not([chromehidden~="toolbar"]):is([sizemode="maximized"]) #PanelUI-menu-button[open]>stack::after{
+            background-position-x: -30px !important;
+            background-position-y: -4px !important;
+        }}
+}
+
+/* ______________________________________ Rhythm image for tab with sound _______________________________________ */
+
+@supports -moz-bool-pref("floorpone.rhythm-sound-tab") {
+    
+    tab[soundplaying]:not([pinned]) .tab-background::before{
+        content: "" !important; 
+        display: block !important;
+        position: absolute !important;
+        }
+    
+    @media (prefers-color-scheme: dark){
+        tab[soundplaying]:not([pinned]) .tab-background::before{
+            background: url("../images/Beats.webp") no-repeat left center !important;
+            background-size: 22px 16px !important;
+            width: 22px !important;
+            height: 16px !important;
+            margin-inline-start: 5px !important;
+            margin-block-start: calc(var(--tab-height-personal)/2 - 1px)  !important;
+    }}
+
+    @media (prefers-color-scheme: light){
+        tab[soundplaying]:not([pinned]) .tab-background::before{
+            background: url("../images/Beats.gif") repeat left center !important;
+            background-size: 16px 16px !important;
+            margin-inline-start: 6px !important;
+            margin-block-start: calc(var(--tab-height-personal)/2 + 3px)  !important;
+            width: 20px !important;
+            height: 10px !important;
+    }}
+    
+    /* Fix for tab_gradient_border config */
+    @supports -moz-bool-pref("floorpone.selected-tab-gradient-border") {
+        @media (prefers-color-scheme: dark){
+           tab[soundplaying][selected]:not([pinned]) .tab-background::before{
+                margin-inline-start: 4px !important;
+                margin-block-start: calc(var(--tab-height-personal)/2 - 2px)  !important;
+                }}
+        @media (prefers-color-scheme: light){
+           tab[soundplaying][selected]:not([pinned]) .tab-background::before{
+                margin-inline-start: 5px !important;
+                margin-block-start: calc(var(--tab-height-personal)/2 + 2px)  !important;
+                }}}
+}
+
+/* ____________________________________________ Main-Image config ____________________________________________ */
+
+@supports -moz-bool-pref("floorpone.main-image") {
+
+/* Sombra en la pestaña activa  eleminada */
+    :root:not([lwtheme-image],[style*="--lwt-additional-images"]) .tabbrowser-tab[selected="true"]:not([multiselected]) .tab-stack {
+            box-shadow: none !important; }
+    
+/* Borde en la pestaña activa - temas solidos y con imágenes */
+    @media not (-moz-bool-pref:"firefoxone.selected_tab_gradient_border"){
+    tab[selected] .tab-background{
+        outline: 1px solid var(--identity-tab-color, var(--button-active-bgcolor)) !important;
+        outline-offset: -1px !important;
+        }}  
+
+/* Alineamos la imagen correctamente cuando se usa floorp-sidebar */
+:root:not([chromehidden~="toolbar"],[invisibleBMS],[sizemode="fullscreen"]) #sidebar-select-box,
+:root:not([chromehidden~="toolbar"],[invisibleBMS],[sizemode="fullscreen"]) #sidebar-select-box:is([style*="overflow: hidden auto; order: 0;"]){
+        background-position: -4px -8px !important;
+        background-size: auto auto !important;
+    }
+
+@media (prefers-color-scheme: dark){ 
+    :root,
+    :root:is([brighttext]):-moz-lwtheme,
+    :root[lwt-toolbar-field-focus-brighttext],
+    :root:-moz-lwtheme{
+    
+  --toolbar-field-background-color: transparent !important;                                                      /* toolbar_field */
+  --toolbar-field-border-color: transparent !important;                                                          /* toolbar_field_border */
+  --lwt-selected-tab-background-color: var(--toolbarbutton-hover-background) !important;                         /* tab_selected */
+  --toolbar-field-focus-background-color: color-mix(in srgb, var(--general-color) 4%, #2e273ff7) !important;     /* toolbar_field_focus */
+  --toolbarbutton-hover-background: color-mix(in srgb, 
+    transparent 88%, color-mix(in srgb, var(--lwt-tab-text) 68%, var(--general-color)) ) !important;             /* button_background_hover */
+  --toolbarbutton-active-background: color-mix(in srgb, 
+    transparent 88%, color-mix(in srgb, var(--lwt-tab-text) 90%, var(--general-color)) ) !important;             /* button_background_active */
+  --toolbarbutton-hover-personal: var(--toolbarbutton-hover-background) !important;                              /* Button :hover color personal */
+  --lwt-background-alignment: left top, left top, left top !important;
+  --lwt-header-image: var(--lwt-main-image) !important; 
+  --lwt-additional-images: var(--lwt-main-image) !important;
+
+    }
+    
+    :root:is(tab[selected] .tab-background, #nav-bar, findbar, #PersonalToolbar, #main-menubar, #sidebar-select-box, #statusBar),
+    :root:is([brighttext]):-moz-lwtheme :is(tab[selected] .tab-background, #nav-bar, findbar, #PersonalToolbar, #main-menubar, #sidebar-select-box, #statusBar),
+    :root[lwt-toolbar-field-focus-brighttext] :is(tab[selected] .tab-background, #nav-bar, findbar, #PersonalToolbar, #main-menubar, #sidebar-select-box, #statusBar),
+    :root:-moz-lwtheme :is(tab[selected] .tab-background, #nav-bar, findbar, #PersonalToolbar, #main-menubar, #sidebar-select-box, #statusBar){
+        --toolbar-bgcolor: #10101940 !important;                                                                 /* toolbar */
+        }
+    }
+  
+@media (prefers-color-scheme: light){
+    :root,
+    :root:not([lwtheme-brighttext="true"]),
+    :root:-moz-lwtheme{
+
+  --toolbar-field-background-color: transparent !important;                                                      /* toolbar_field */
+  --toolbar-field-border-color: transparent !important;                                                          /* toolbar_field_border */
+  --lwt-selected-tab-background-color: var(--toolbarbutton-hover-background) !important;                         /* tab_selected */
+  --toolbar-field-focus-background-color: color-mix(in srgb, var(--general-color) 14%, #f9f9f9f7) !important;    /* toolbar_field_focus */
+  --toolbarbutton-hover-background: color-mix(in srgb, 
+    transparent 88%, color-mix(in srgb, var(--lwt-tab-text) 68%, var(--general-color)) ) !important;             /* button_background_hover */
+  --toolbarbutton-active-background: color-mix(in srgb, 
+    transparent 78%, color-mix(in srgb, var(--lwt-tab-text) 58%, var(--general-color)) ) !important;             /* button_background_active */
+  --toolbarbutton-hover-personal: var(--toolbarbutton-hover-background) !important;                              /* Button :hover color personal */
+  --lwt-background-alignment: right top, left top, left top !important;
+  --lwt-header-image: var(--lwt-main-image) !important; 
+  --lwt-additional-images: var(--lwt-main-image) !important;
+
+  }
+    :root:is(tab[selected] .tab-background, #nav-bar, findbar, #PersonalToolbar, #main-menubar, #sidebar-select-box, #statusBar),
+    :root:is([brighttext]):-moz-lwtheme :is(tab[selected] .tab-background, #nav-bar, findbar, #PersonalToolbar, #main-menubar, #sidebar-select-box, #statusBar),
+    :root[lwt-toolbar-field-focus-brighttext] :is(tab[selected] .tab-background, #nav-bar, findbar, #PersonalToolbar, #main-menubar, #sidebar-select-box, #statusBar),
+    :root:-moz-lwtheme :is(tab[selected] .tab-background, #nav-bar, findbar, #PersonalToolbar, #main-menubar, #sidebar-select-box, #statusBar){
+        --toolbar-bgcolor: #ffffff40 !important;                                                                 /* toolbar */
+        }
+    }
+}

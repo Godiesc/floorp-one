@@ -1,0 +1,615 @@
+/* Source file made available under Mozilla Public License v. 2.0 See the main repository for updates as well as full license text. 
+   https://github.com/Godiesc/firefox-one */
+
+/* Elimina borde indeseado de la floorp-sidebar */
+
+:root:is([invisibleBMS]) .browser-sidebar2:not(splitter){ border: 0px !important; }
+
+/* Floorp-sidebar on left */
+
+:root:not([chromehidden~="toolbar"],[invisibleBMS],[sizemode="fullscreen"]) #sidebar-select-box:is([style*="overflow: hidden auto; order: 0;"]) {
+    
+    scrollbar-width: none !important;
+    position: absolute !important;
+    display: flex !important;
+    --toolbarbutton-active-background: var(--general-color) !important;
+    --padding-top-left-sidebar: 48px !important;
+    --padding-bottom-left-sidebar: 8px !important;
+    --height-left-sidebar: calc(100vh - 8px) !important;
+    height: var(--height-left-sidebar) !important;
+    max-height: var(--height-left-sidebar) !important;
+    background-color: var(--toolbar-bgcolor) !important;
+    background-image: linear-gradient(var(--toolbar-bgcolor, transparent), var(--toolbar-bgcolor, transparent)), 
+                      linear-gradient(transparent, transparent), 
+                      var(--lwt-header-image, var(--lwt-additional-images, none)) !important;
+    background-size: cover !important;
+    background-position: left top !important;
+    background-repeat: repeat !important;
+    top: 4px !important;
+    padding-top: var(--padding-top-left-sidebar) !important;
+    padding-bottom: var(--padding-bottom-left-sidebar) !important;
+    z-index: 1 !important;
+    border-radius: 8px !important;  
+    margin-inline-start: 0px !important;
+    min-width: var(--uc-vertical-toolbar-width) !important;
+    border-width: 0px !important;
+    
+    box-shadow: inset 1px 0 0 0 var(--lwt-frame), inset 1px 0 0 0 var(--lwt-frame), inset 1px 0 0 0 var(--lwt-frame),
+                inset 4px 0 var(--lwt-frame) !important;
+}
+
+/* Outline en tema que tienen imágenes */
+
+:root:not([chromehidden~="toolbar"],[invisibleBMS],[sizemode="fullscreen"]):is([lwtheme-image],[style*="--lwt-additional-images"])
+    #sidebar-select-box:is([style*="overflow: hidden auto; order: 0;"]){
+        box-shadow: inset 1px 0 0 0 var(--lwt-frame), inset 1px 0 0 0 var(--lwt-frame), inset 1px 0 0 0 var(--lwt-frame),
+                    inset 4px 0 var(--lwt-frame),
+                    inset 0px -1px 0 0  #50505040,  /* abajo */
+                    inset 5px 0 0 0  #50505040,     /* left */
+                    inset -1px 0 0 0 #50505040,     /* right */ 
+                    inset 0 1px 0 0  #50505040      /* Left */
+                    !important;
+        }
+
+/* outline en todos los temas "without-default-colors" config */
+
+@supports -moz-bool-pref("floorpone.without-default-colors") {
+    :root:not([chromehidden~="toolbar"],[invisibleBMS],[sizemode="fullscreen"]) 
+        #sidebar-select-box#sidebar-select-box:is([style*="overflow: hidden auto; order: 0;"]){
+            outline: none !important;
+            box-shadow: inset 1px 0 0 0 var(--lwt-frame), inset 1px 0 0 0 var(--lwt-frame), inset 1px 0 0 0 var(--lwt-frame),
+                        inset 4px 0 var(--lwt-frame),
+                        inset 0px -1px 0 0  #50505040,  /* abajo */
+                        inset 5px 0 0 0  #50505040,     /* left */
+                        inset -1px 0 0 0 #50505040,     /* right */ 
+                        inset 0 1px 0 0  #50505040      /* Left */
+                        !important;
+            }}
+
+/* Sidebar [Open] */
+
+#sidebar2-header toolbarbutton:is(:hover){
+    background: var(--toolbarbutton-hover-background)  !important;
+}
+
+:root:not([sizemode="fullscreen"],[invisibleBMS]) #sidebar2-box:not(splitter)    {
+    background: var(--toolbar-bgcolor);
+    border: var(--toolbar-bgcolor) 0px solid !important;
+    border-radius: 8px !important;
+    margin-inline-start: calc(var(--padding-left-tab) + 4px) !important;
+    margin-block-end: 4px !important;
+    outline: 3px solid var(--lwt-frame  ) !important;
+}
+
+splitter {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+    border-color: transparent !important;
+    margin-inline-start: 0px !important;
+    min-width: 4px !important;
+}
+
+/* ######################################### Items ######################################### */
+
+/* Quitar fondo hover, [open], :active */
+
+.sidepanel-icon:is([checked="true"], :active, :hover), 
+.sidepanel-browser-icon:hover{
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+/* Tamaño */
+
+/* floorp-sidebar on left - centrar íconos por el trick de clic on border */
+
+.sidepanel-icon, .sidepanel-browser-icon {
+    width: calc(var(--uc-vertical-toolbar-width,0) - 0px) !important;
+    max-width: calc(var(--uc-vertical-toolbar-width,0) - 0px) !important;
+    min-width: calc(var(--uc-vertical-toolbar-width,0) - 0px) !important;
+    border: none !important;
+    margin-left: 0px !important;
+    border-radius: 0px !important;
+    margin: 2px 0px 2px 0px !important;
+    padding-inline-start: 14px !important;
+    scale: 1.0 !important;
+    transition-duration: 250ms !important;
+}
+
+/* ïcono (+) de añadir sitio visible solo on :hover */
+
+#add-button:not(:hover){ opacity: 0 !important; }
+
+/* Fondo sitios Anclados */
+
+.sidepanel-icon.sicon-list.webpanel-icon::after{
+    content: "";  display: -moz-box;  position: absolute !important;
+    align-self: center !important;
+    height: 32px !important;
+    width: 20px !important;
+    border-radius: 7px !important;
+    background-color: var(--toolbarbutton-hover-background) !important;
+    box-shadow: none !important;
+    padding-inline: 6px !important;
+    z-index: -1 !important;
+}
+
+/* Fondo :hover */
+
+.sidepanel-icon:is([checked="true"],:active, :hover)::after, 
+.sidepanel-browser-icon:hover::after{
+    content: "";  display: -moz-box;  position: absolute !important;
+    align-self: center !important;
+    height: 30px !important;
+    width: 30px !important;
+    border-radius: 7px !important;
+    background-color: var(--toolbarbutton-hover-background) !important;
+    z-index: -1 !important;
+}
+
+/* Zoom icon on :hover */
+
+.sidepanel-icon:hover > .toolbarbutton-icon, 
+.sidepanel-browser-icon:hover> .toolbarbutton-icon {
+    scale: 1.18 !important;
+    transition-duration: 300ms !important;
+    box-shadow: none !important;
+}
+
+.sidepanel-icon:not(:hover) > .toolbarbutton-icon, 
+.sidepanel-browser-icon:not(:hover)> .toolbarbutton-icon {
+    scale: 1 !important;
+    transition-duration: 300ms !important;
+    box-shadow: none !important;
+}
+
+/* Fondo [open] */
+.sidepanel-icon:is([checked="true"]):not(:active).sicon-list.webpanel-icon::after,
+.sidepanel-icon:is([checked="true"])::after{
+    background-color: var(--button-bgcolor) !important;
+    background: linear-gradient(217deg, rgba(255, 0, 0, 0.8), rgba(255, 0, 0, 0) 70.71%), 
+                linear-gradient(127deg, rgba(0, 255, 0, 0.8), rgba(0, 255, 0, 0) 70.71%),
+                linear-gradient(336deg, rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0) 70.71%);
+    color: white !important;
+    fill: white !important;
+    transition-duration: 550ms !important;
+    animation: scale-up-center 780ms !important;
+}
+
+.sidepanel-icon:is([checked="true"]){ color: white !important; }
+
+/* Efecto clic botones */
+
+@keyframes scaleclick { 
+    0%{ transform:scale(0.8) } 
+    99%{ transform:scale(1.1) }
+    100%{ transform:scale(1) }
+}
+
+.sidepanel-icon[checked="true"] > .toolbarbutton-icon{
+    background-color: transparent !important;
+    box-shadow: none !important;
+    animation: scaleclick 190ms !important;
+    scale: 1.0 !important;/**/
+}
+
+.sidepanel-icon:not([checked="true"]):active > .toolbarbutton-icon, 
+.sidepanel-browser-icon:active > .toolbarbutton-icon, 
+.sidebar2-icon:active > .toolbarbutton-icon{
+    background-color: transparent !important;
+    scale: 1.0 !important;
+    transition-duration: 250ms !important;
+}
+
+/* Efecto clic background botones */
+
+@keyframes scale-up-center{
+    0%{ background-color: color-mix(in srgb, transparent 78%, white);
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;} 
+   80%{ background-color: color-mix(in srgb, transparent 95%, var(--toolbarbutton-hover-background));
+        border-radius: 10%;
+        width: 30px;
+        height: 30px;}
+  100%{ background-color: transparent;
+        border-radius: 0%;
+        width: calc(var(--my-vertical-toolbar-width) + 20px);}
+}
+
+.sidepanel-icon:is([checked="true"]):not(:active)::before{
+    content: "";  display: -moz-box;  position: absolute !important;
+    align-self: center !important;
+    border-radius: 0px;
+    animation: scale-up-center 780ms !important;
+}
+
+/* Separadores */
+
+.sidepanel-icon.sicon-list:nth-child(6),
+#bottomButtonBox{
+    margin-top: 40px !important;
+}
+
+/* --------------------------------------- Código general --------------------------- */
+    
+    :root:not([invisibleBMS]) {
+    --uc-vertical-toolbar-width: var(--my-vertical-toolbar-width) !important;       /* Nuevo tamaño sidebar */
+    }
+
+    /* margen izquierda pestañas*/
+    
+    :root:not([chromehidden~="toolbar"],[invisibleBMS]) #toolbar-menubar, 
+    :root:not([chromehidden~="toolbar"],[invisibleBMS]) #toolbar-menubar[autohide="true"]+#TabsToolbar {
+        padding-inline-start: calc(var(--padding-left-tab) + 4px) !important;
+    }
+    
+    /* Borde izquierda-derecha de la toolbar */
+
+    :root:not([chromehidden~="toolbar"],[sizemode="fullscreen"],[invisibleBMS],[customizing]) :is(#nav-bar, #PersonalToolbar) {
+        border-radius: 8px !important;
+        margin-inline: calc(var(--padding-left-tab) + 4px) 4px !important;
+        margin-bottom: 2px !important;
+    }
+
+    :root:not([chromehidden~="toolbar"],[sizemode="fullscreen"],[invisibleBMS]) #tab-notification-deck {
+        border-radius: 8px !important;
+        margin-inline: calc(var(--padding-left-tab) + 4px) 4px !important;}
+
+    :root:not([chromehidden~="toolbar"],[invisibleBMS]) .notificationbox-stack[notificationside="top"],
+    :root:not([chromehidden~="toolbar"],[invisibleBMS]) .container.infobar{
+        border-radius: 8px !important;}
+
+    /* Barra de Información que aparece a veces bajo la nav-bar o la bookmark-bar */
+    
+    .container.infobar .icon { color: var(--yellowbrown) !important; }
+
+    .container.infobar{ 
+        background-image: linear-gradient(160deg, #884dff 0%, #ff4aa2 52.08%, #ffbd4f 100%) !important;
+        color: white !important; 
+    }
+
+    .container.infobar::before{ display: none !important;  }
+    
+/* ################################ Nuevo espacio alrededor del contenido web ################################ */
+
+    /* Espacio floorp-bar + contenido */
+    :root:not([sizemode="fullscreen"],[invisibleBMS]) #appcontent {
+        padding: 0px 4px 4px 0px !important;
+    }
+
+    /* Espacio firefox-sidebar */
+    :root:not([sizemode="fullscreen"],[invisibleBMS]) #sidebar-box {
+        margin: 0px 0px 4px 0px !important;
+    }
+    
+    /* sin floorp-sidebar: firefox-sidebar + webpage */
+
+    :root:not([sizemode="fullscreen"])[invisibleBMS] 
+        #sidebar-box[checked="true"]:is([style*="order: 3;"]) ~ #appcontent{
+            padding: 1px 4px 4px 0px !important;
+    }
+
+    /* Corners en ventanas emergentes */
+
+    :root:is([chromehidden~="toolbar"]):not([invisibleBMS]) .browserStack>browser{
+        margin: -2px 0px 0px 3px !important; 
+        border-radius: 0 0 8px 8px !important;
+        outline: none !important;
+    }
+
+    /* Status bar */
+
+    :root:not([chromehidden~="toolbar"],[sizemode="fullscreen"],[customizing],[invisibleBMS]) #statusBar{
+        background-image: linear-gradient(var(--toolbar-bgcolor, transparent), var(--toolbar-bgcolor, transparent)), 
+                          linear-gradient(transparent, transparent), 
+                          var(--lwt-header-image, var(--lwt-additional-images, none)) !important;
+        background-position: right center, right center, right center, left center !important;
+        background-repeat: repeat, repeat, var(--lwt-background-tiling) !important;
+        border-radius: 8px !important;
+        margin-inline: calc(var(--padding-left-tab) + 4px) 4px !important;
+        margin-block: 0px 4px !important;
+        border-top: 0px !important;
+    }
+
+    body {
+        background-color: var(--lwt-frame) !important;
+    }
+
+/* ########################################### Nuevo Estilo -Botón Menu- cuando Floorp sidebar está activa  ########################################### 
+   ########################################### ------------------------------------------------------------ ########################################### */
+    
+@supports (not -moz-bool-pref("floorpone.sidebar-on-right")) and ( not -moz-bool-pref("floorpone.tree-tabs" )){
+        
+@media (-moz-platform: windows), (-moz-platform: linux) {
+    
+    :root:not([invisibleBMS]) {
+        --margin-left-icons-personal: calc(var(--my-vertical-toolbar-width) / 2 - 16px) !important;     /* Nuevo margen-left del ícono -menu- */
+        --margin-right-icons-personal: 12px !important;                                                 /* Nuevo margen-left del ícono -menu- */
+        --padding-left-tab: var(--uc-vertical-toolbar-width) !important;                                /* Nuevo tamaño botón -Menu- */
+    }
+
+/* Tamaño */
+    
+    :root:not([chromehidden~="toolbar"],[invisibleBMS]) #PanelUI-button {
+        height: 40px !important;
+    }
+   
+    :root:not([chromehidden~="toolbar"],[invisibleBMS]) #PanelUI-menu-button:not([open]) {
+        width: calc(var(--padding-left-tab) + 4px) !important;
+        padding-inline: calc(var(--padding-left-tab)/2 - 14px) !important;
+    }
+    
+/* Alinear botón en ventana maximizada, ventana normal y fullscreen */
+        
+    :root:not([chromehidden~="toolbar"],[invisibleBMS],[sizemode="normal"],[sizemode="fullscreen"]) #PanelUI-menu-button[open] .toolbarbutton-badge-stack {
+        padding-inline-start: calc(var(--margin-left-icons-personal) + 4px) !important;
+    }
+    
+    :root:not([chromehidden~="toolbar"],[invisibleBMS]):is([sizemode="normal"],[sizemode="fullscreen"]) #PanelUI-menu-button[open] .toolbarbutton-badge-stack {
+        margin-inline-start: calc(var(--margin-left-icons-personal) - 2px) !important;
+    }
+       
+/* Posición margin-top */
+        
+    :root:not([chromehidden~="toolbar"],[sizemode="fullscreen"],[invisibleBMS]) #PanelUI-menu-button>.toolbarbutton-badge-stack {
+        margin-block-start: 12px !important;
+    }
+    
+    :root:not([chromehidden~="toolbar"],[invisibleBMS])[sizemode="fullscreen"] #PanelUI-menu-button>.toolbarbutton-badge-stack {
+        margin-block-start: 4px !important;
+    }
+    
+/* menu :hover y open */
+    
+    :root:not([chromehidden~="toolbar"],[sizemode="normal"],[sizemode="fullscreen"],[invisibleBMS]) 
+        #PanelUI-menu-button[open]>.toolbarbutton-badge-stack {
+            min-height: 30px !important; /* Sirve para alinear al cambiar the height de pestañas */
+            max-height: 30px !important;
+    }
+    
+/* Padding top para hacer espacio para la fila del Label menú */
+    
+    :root:not([chromehidden~="toolbar"],[invisibleBMS])[sizemode="maximized"] #appMenu-popup>panelmultiview>box>box>panelview {
+        padding-top: 36px !important;
+    }
+    
+/* Margin top para subir el menú [open] */
+    
+    :root:not([chromehidden~="toolbar"],[invisibleBMS])[sizemode="maximized"] #appMenu-popup {
+        --menu-plus-label-width: 94px !important;
+        --button-height-personal: 33px !important;
+        margin-top: calc(-6px - var(--button-height-personal)) !important;
+        clip-path: polygon(0% 0%, 0% 100%, 1% 53%, 0 13px, var(--menu-plus-label-width) 13px,
+                   var(--menu-plus-label-width) var(--button-height-personal), 0 var(--button-height-personal), 0 100%, 100% 100%, 100% 0%);
+    }
+  }
+}
+
+/* ################################################################# Extensiones ################################################################# 
+   ######################################### ------------------------------------------------------------ ######################################## */
+    
+    
+    /* Ocultar contador cuando este es "0" */
+
+    toolbarbutton[badge="0"] .toolbarbutton-badge { display: none !important; }
+    
+     /* Contador de la extension */
+
+    toolbaritem toolbarbutton:not(:hover,[open],:active) .toolbarbutton-badge:not(:hover) {
+        background-color: #ff0000cc !important;
+        color: transparent !important;
+        box-shadow: none !important;
+        outline: 1px solid #000000dd !important;
+        border-radius: 50% !important;
+        height: 4px !important;
+        width: 4px !important;
+        min-height: 4px !important;
+        min-width: 4px !important;
+        transform: translate(-1px, 1px) !important;
+    }
+
+    toolbaritem toolbarbutton:is(:hover,[open],:active) .toolbarbutton-badge {
+        box-shadow: -1px 1px 0 hsla(0, 100%, 100%, .2) inset, 1px -1px 0px hsla(0, 100%, 100%, .2) inset, 0 1px 0 hsla(206, 50%, 10%, .2) !important;
+        margin-top: -6px !important;
+        margin-inline-end: -6px !important;
+        animation: none !important;
+        border-radius: 0 var(--toolbarbutton-border-radius) 0 4px !important;
+    }
+
+
+/* ########################################################### FLOORP-bar on right side ########################################################### */
+
+@supports -moz-bool-pref("floorpone.sidebar-on-right") {
+    
+    /* Floorp-sidebar on right */
+
+:root:not([chromehidden~="toolbar"],[invisibleBMS],[sizemode="fullscreen"]) #sidebar-select-box:is([style*="overflow: hidden auto; order: 7;"]) {
+    
+    scrollbar-width: none !important;
+    position: relative !important;
+    display: flex !important;
+    --toolbarbutton-active-background: var(--general-color) !important;
+    --padding-top-left-sidebar: 0px !important;
+    --padding-bottom-left-sidebar: 8px !important;
+
+    background-color: var(--toolbar-bgcolor) !important;
+    background-image: linear-gradient(var(--toolbar-bgcolor, transparent), var(--toolbar-bgcolor, transparent)), 
+                      linear-gradient(transparent, transparent), 
+                      var(--lwt-header-image, var(--lwt-additional-images, none)) !important;
+    background-size: cover !important;
+    background-position: right top !important;
+    background-repeat: repeat !important;
+    top: 0px !important;
+    border: 0;
+    padding-top: var(--padding-top-left-sidebar) !important;
+    padding-bottom: var(--padding-bottom-left-sidebar) !important;
+    z-index: 1 !important;
+    border-radius: 8px !important;  
+    margin-inline-end: 0px !important;
+    margin-block-end: 4px !important;
+    min-width: var(--uc-vertical-toolbar-width) !important;
+    border-width: 0px !important;
+    
+    box-shadow: inset -1px 0 0 0 var(--lwt-frame), inset -1px 0 0 0 var(--lwt-frame), inset -1px 0 0 0 var(--lwt-frame),
+                inset -4px 0 var(--lwt-frame) !important;
+    
+    }
+
+:root:not([chromehidden~="toolbar"],[invisibleBMS],[sizemode="fullscreen"]):is([lwtheme-image],[style*="--lwt-additional-images"])
+    #sidebar-select-box:is([style*="overflow: hidden auto; order: 7;"]){
+        box-shadow: inset -1px 0 0 0 var(--lwt-frame), inset -1px 0 0 0 var(--lwt-frame), inset -1px 0 0 0 var(--lwt-frame),
+                    inset -4px 0 var(--lwt-frame),
+                    inset 1px 0 0 0  #50505040,     /* left */
+                    inset -5px 0 0 0 #50505040,     /* right trick */
+                    inset 0 -1px 0 0 #50505040,     /* bottom */ 
+                    inset 0 1px 0 0  #50505040      /* top */
+                    !important;
+        }
+    
+/* outline en todos los temas "without-default-colors" config */
+
+@supports -moz-bool-pref("floorpone.without-default-colors") {
+    :root:not([chromehidden~="toolbar"],[invisibleBMS],[sizemode="fullscreen"]) 
+        #sidebar-select-box#sidebar-select-box:is([style*="overflow: hidden auto; order: 7;"]){
+            outline: none !important;
+            box-shadow: inset -1px 0 0 0 var(--lwt-frame), inset -1px 0 0 0 var(--lwt-frame), inset -1px 0 0 0 var(--lwt-frame),
+                    inset -4px 0 var(--lwt-frame),
+                    inset 1px 0 0 0  #50505040,     /* left */
+                    inset -5px 0 0 0 #50505040,     /* right trick */
+                    inset 0 -1px 0 0 #50505040,     /* bottom */ 
+                    inset 0 1px 0 0  #50505040      /* top */
+                    !important;
+            }}
+
+    /* floorp Sidebar close */
+:root:not([sizemode="fullscreen"],[invisibleBMS]) #sidebar2-box:is([style*="min-width: 0px; order: 6;"]):not(splitter),
+:root:not([sizemode="fullscreen"],[invisibleBMS]) #sidebar2-box:is([style*="min-width: 0px; max-width: 0px; order: 6;"]):not(splitter){
+    background: var(--toolbar-bgcolor);
+    border: var(--toolbar-bgcolor) 0px solid !important;
+    border-radius: 8px !important;
+    margin-inline-start: 0px !important;
+    margin-block-end: 4px !important;
+    outline: 3px solid var(--lwt-frame) !important;
+}
+    /* floorp-Sidebar open */
+:root:not([sizemode="fullscreen"],[invisibleBMS]) #sidebar2-box:is([style*="min-width: auto; order: 6;"]):not(splitter)    {
+    background: var(--toolbar-bgcolor);
+    border: var(--toolbar-bgcolor) 0px solid !important;
+    border-radius: 8px !important;
+    margin-inline: 0px 4px !important;
+    margin-block-end: 4px !important;
+    outline: 3px solid var(--lwt-frame) !important;
+}
+
+/* floorp-sidebar on right - centrar íconos por el trick de clic on border */
+
+#sidebar-select-box:is([style*="overflow: hidden auto; order: 7;"]) :is(.sidepanel-icon, .sidepanel-browser-icon) {
+    width: calc(var(--uc-vertical-toolbar-width,0) - 0px) !important;
+    max-width: calc(var(--uc-vertical-toolbar-width,0) - 0px) !important;
+    min-width: calc(var(--uc-vertical-toolbar-width,0) - 0px) !important;
+    border: none !important;
+    margin-left: 0px !important;
+    border-radius: 0px !important;
+    margin: 2px 0px 2px 0px !important;
+    padding-inline-start: 0px !important;
+    padding-inline-end: 4px !important;
+    scale: 1.0 !important;
+    transition-duration: 250ms !important;
+}
+
+/* ################################ Nuevo espacio alrededor del contenido web ################################ */
+    
+/* Espacio firefox-sidebar */
+    :root:not([sizemode="fullscreen"],[invisibleBMS]) #sidebar-box:is([style*="order: 4;"]) {
+        margin: 0px 4px 4px 0px !important;
+    }
+
+/* Floorp-sidebar on right - Espacio floorp-bar(sidebar-open) + contenido */
+    :root:not([sizemode="fullscreen"],[invisibleBMS]) 
+    #sidebar-box:is([hidden="true"]) + #sidebar-splitter + 
+    #sidebar2-box:is([style*="min-width: auto; order: 6;"]) + #sidebar-splitter2 + #sidebar-select-box:is([style*="overflow: hidden auto; order: 7;"]) + #appcontent{
+        padding: 0px 0px 4px 4px !important;
+    }
+    
+    /* Floorp-sidebar on right - firefox-sidebar off */
+    :root:not([sizemode="fullscreen"],[invisibleBMS]) 
+        #sidebar-box:is([hidden="true"]) + #sidebar-splitter + 
+        #sidebar2-box + #sidebar-splitter2 + #sidebar-select-box:is([style*="overflow: hidden auto; order: 7;"]) + #appcontent{
+            padding: 0px 4px 4px 4px !important;
+    }
+
+    /* Floorp-sidebar on right: firefox-sidebar on left + web content */
+    :root:not([sizemode="fullscreen"],[invisibleBMS]) 
+        #sidebar-box[checked="true"][style*="order: 0;"]{
+            margin-left: 4px !important;
+    }
+
+    :root:not([sizemode="fullscreen"],[invisibleBMS]) 
+        #sidebar-box:is([checked="true"][style*="order: 0;"]) + #sidebar-splitter + 
+        #sidebar2-box + #sidebar-splitter2 + #sidebar-select-box:is([style*="overflow: hidden auto; order: 7;"]) + #appcontent{
+            padding: 0px 4px 4px 0px !important;
+    }
+    
+    /* Floorp-sidebar on right: firefox-sidebar on left + web content + floorp-sidebar */
+
+    :root:not([sizemode="fullscreen"],[invisibleBMS]) 
+        #sidebar-box:is([checked="true"][style*="order: 0;"]) + #sidebar-splitter + 
+        #sidebar2-box:is([style*="min-width: auto; order: 6;"]) + #sidebar-splitter2 + #sidebar-select-box:is([style*="overflow: hidden auto; order: 7;"]) + #appcontent{
+            padding: 0px 0px 4px 0px !important;
+    }
+
+    /* Floorp-sidebar on right: web content + firefox-sidebar on right */
+    :root:not([sizemode="fullscreen"],[invisibleBMS]) 
+        #browser:has(#sidebar2-box[style*="min-width: 0px; order: 6;"]) #sidebar-box[checked="true"][style*="order: 4;"]{
+            margin-right: 4px !important;
+    }
+
+    :root:not([sizemode="fullscreen"],[invisibleBMS]) 
+        #browser:has(#sidebar2-box[style*="min-width: auto; order: 6;"]) #sidebar-box[checked="true"][style*="order: 4;"]{
+            margin-right: 0px !important;
+    }
+
+    :root:not([sizemode="fullscreen"],[invisibleBMS]) 
+        #sidebar-box[checked="true"] + #sidebar-splitter + 
+        #sidebar2-box + #sidebar-splitter2 + #sidebar-select-box:is([style*="overflow: hidden auto; order: 7;"]) + #appcontent{
+            padding: 0px 0px 4px 4px !important;
+    }
+}
+
+/* ####################################################### MENU y margenes nav-bar -floorpone.sidebar-on-right- ####################################################### */
+
+@supports -moz-bool-pref("floorpone.sidebar-on-right") or -moz-bool-pref("floorpone.tree-tabs")  {
+    
+/* Quitamos margen izquierda ahora inneceario al estar la floorp-sidebar on right */
+    
+    :root:not([chromehidden~="toolbar"],[sizemode="fullscreen"],[invisibleBMS]) :is(#nav-bar, #PersonalToolbar) {
+        margin-inline-start: 4px !important;
+    }
+    
+/*  MENU -floorpone.sidebar-on-right- */
+    
+    :root:not([invisibleBMS]) {
+        --margin-right-icons-personal: 8px !important;                                                 /* Nuevo margen-left del ícono -menu- */
+        --padding-left-tab: 36px ;                                                                     /* Nuevo tamaño botón menú */
+    }
+    
+/* Status bar */
+
+    :root:not([chromehidden~="toolbar"],[sizemode="fullscreen"],[invisibleBMS],[customizing]) #statusBar{
+        margin-inline: 4px !important;
+    }
+    
+    :root:not([chromehidden~="toolbar"],[sizemode="fullscreen"],[customizing])[invisibleBMS] #statusBar{
+        background-image: linear-gradient(var(--toolbar-bgcolor, transparent), var(--toolbar-bgcolor, transparent)), 
+                          linear-gradient(transparent, transparent), 
+                          var(--lwt-header-image, var(--lwt-additional-images, none)) !important;
+        background-position: right center, right center, right center, left center !important;
+        background-repeat: repeat, repeat, var(--lwt-background-tiling) !important;
+        border-radius: 8px !important;
+        margin-inline: 4px !important;
+        margin-block: 0px 4px !important;
+        border-top: 0px !important;
+    }
+  }

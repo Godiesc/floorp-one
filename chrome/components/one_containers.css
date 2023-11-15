@@ -1,0 +1,57 @@
+/* Source file made available under Mozilla Public License v. 2.0 See the main repository for updates as well as full license text. 
+   https://github.com/Godiesc/firefox-one */
+
+/* Posición de la nueva linea de contenedor */
+
+.tabbrowser-tab .tab-context-line {
+    height: calc(var(--tab-height-personal) - 6px) !important;
+    width: 3px !important;
+    margin-top: 3px !important;
+    box-shadow: 2px 0 10px color-mix(in srgb, var(--identity-tab-color) 90%, white) !important;
+    margin-left: 2px !important;
+}
+
+.tabbrowser-tab:not([selected]) .tab-context-line {
+    height: calc(var(--tab-height-personal) - 12px) !important;
+    width: 3px !important;
+    margin-top: 6px !important;
+    box-shadow: 2px 0 8px color-mix(in srgb, var(--identity-tab-color) 90%, white) !important;
+    transition-duration: 0ms !important;
+}
+
+.tabbrowser-tab:is([selected]) .tab-context-line {
+    transition-duration: 150ms !important;
+}
+
+/* Eliminar label del contenedor de la urlbar, manteniendo el ícono */
+
+#userContext-label {
+    display: none !important;
+}
+
+/* Quitar separadores entre pestañas de contenedor */
+
+:is(.identity-color-pink, .identity-color-green, .identity-color-blue, 
+    .identity-color-orange, .identity-color-red, .identity-color-purple, 
+    .identity-color-yellow, .identity-color-turquoise ) .tab-background:after{
+    content: none !important;
+}
+
+/* Color contenedor default */
+
+.identity-color-toolbar {
+    --identity-tab-color: color-mix(in srgb, #0c86ee 80%, var(--lwt-tab-text)) !important;
+    --identity-icon-color: color-mix(in srgb, #0c86ee 80%, var(--lwt-tab-text)) !important;
+}
+
+.identity-color-toolbar:-moz-window-inactive {
+    --identity-tab-color: #0c86ee !important;
+    --identity-icon-color: color-mix(in srgb, #0c86ee 60%, transparent) !important;
+}
+
+/* Label colorida según su contenedor */
+
+.identity-color-red {
+    --identity-tab-color: #ff2940 !important;
+    --identity-icon-color: #ff2940 !important;
+}

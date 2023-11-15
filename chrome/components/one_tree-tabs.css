@@ -1,0 +1,534 @@
+/* Source file made available under Mozilla Public License v. 2.0 See the main repository for updates as well as full license text. 
+   https://github.com/Godiesc/firefox-one */
+
+@supports -moz-bool-pref("floorpone.tree-tabs") {
+    
+/* Borde izquierda-derecha nav-bar y Bookmarks-bar */
+
+    :root:not([chromehidden~="toolbar"],[sizemode="fullscreen"],[invisibleBMS]) :is(#nav-bar, #PersonalToolbar) {
+        border-radius: 8px !important;
+        margin-inline: 4px !important;
+    }
+
+    /* Margen barra informativa bajo la toolbar */
+    :root:not([chromehidden~="toolbar"],[sizemode="fullscreen"],[invisibleBMS]) #tab-notification-deck {
+        border-radius: 8px !important;
+        margin-inline: 4px !important;}
+    
+/* Espacio para el botón menú */
+    
+    :root:not([chromehidden~="toolbar"]) #nav-bar-customization-target > :is(toolbarbutton, toolbaritem):first-child,
+    :root:not([chromehidden~="toolbar"]) toolbar[customizing] .customization-target{
+        margin-inline-start: 40px !important;
+    }
+    
+/* Separador ultimo icono de la nav-bar + window controls */
+    
+    #floorp-tabbar-window-manage-container:before{
+        background: url("../images/urlbar-separator.svg") no-repeat center !important; 
+        content: ""; display: block !important;
+        background-size: 16px 16px !important;
+        width: 26px !important;
+        margin-left: -2px !important;
+        height: calc(var(--toolbar-height-personal) + 6px);
+        -moz-context-properties: fill !important;
+        fill: var(--toolbarbutton-icon-fill) !important;
+        opacity: 0.2;
+    }
+
+/* Espacio de arrastre en ventana normal */
+    
+    :root:not([sizemode="fullscreen"])[sizemode="normal"] 
+        #nav-bar-customization-target > :is(toolbarbutton, toolbaritem):first-child, 
+        #nav-bar-customization-target > toolbarpaletteitem:first-child > :is(toolbarbutton, toolbaritem) {
+            margin-inline-start: 80px !important;
+    }
+    
+    :root:not([sizemode="fullscreen"])[sizemode="normal"] 
+        #floorp-tabbar-window-manage-container:before{
+            background-image: none !important;
+            background-position: right !important;
+            background-size: 16px 16px !important;
+            width: 50px !important;
+    }
+    
+/* Alinear items de la nav-bar + trick para clic desde el borde superior */
+    
+    #nav-bar-customization-target toolbarbutton,
+    #nav-bar > .overflow-button{
+        margin-top: -4px !important;
+        padding-top: 8px !important;
+    }
+    
+    #urlbar { margin-top: 2px !important; }
+
+    #nav-bar{
+        box-shadow: inset 0 1px 0 0 var(--lwt-frame), inset 0 1px 0 0 var(--lwt-frame),inset 0 1px 0 0 var(--lwt-frame),
+                    inset 0 4px var(--lwt-frame) !important;
+    }
+    
+    :root:not([chromehidden~="toolbar"]):is([lwtheme-image],[style*="--lwt-additional-images"]) #nav-bar{
+        box-shadow: inset 0 1px 0 0 var(--lwt-frame), inset 0 1px 0 0 var(--lwt-frame),inset 0 1px 0 0 var(--lwt-frame),
+                    inset 0px -1px 0 0  #50505040,  /* abajo */
+                    inset 0 4px var(--lwt-frame),
+                    inset 0px 5px 0 0  #50505040,   /* top */
+                    inset -1px 0 0 0  #50505040,    /* right */ 
+                    inset 1px 0 0 0  #50505040      /* Left */
+                    !important;
+    }
+    
+    @supports -moz-bool-pref("floorpone.without-default-colors") {
+        #nav-bar{
+            outline: none !important;
+            box-shadow: inset 0 1px 0 0 var(--lwt-frame), inset 0 1px 0 0 var(--lwt-frame),inset 0 1px 0 0 var(--lwt-frame),
+                        inset 0px -1px 0 0  #50505040,  /* abajo */
+                        inset 0 4px var(--lwt-frame),
+                        inset 0px 5px 0 0  #50505040,   /* top */
+                        inset -1px 0 0 0  #50505040,    /* right */ 
+                        inset 1px 0 0 0  #50505040      /* Left */
+                        !important;
+    }}
+
+/* Quita outline nav-bar en temas con imágenes */
+
+    :root:not([chromehidden~="toolbar"]):is([lwtheme-image],[style*="--lwt-additional-images"]) #nav-bar{
+        outline: none !important;
+    }
+
+/* Controles de ventana  */
+
+@media (-moz-platform: windows) {
+    
+    .titlebar-button.titlebar-min .toolbarbutton-icon,
+    .titlebar-button.titlebar-restore .toolbarbutton-icon, .titlebar-button.titlebar-max .toolbarbutton-icon,
+    .titlebar-button.titlebar-close .toolbarbutton-icon{
+        width: 30px !important;
+        height: 30px !important;
+        padding: 8px !important;
+    }
+    
+    .titlebar-button:hover .toolbarbutton-icon{
+        border-radius: var(--toolbarbutton-border-radius) !important;
+    }
+}
+
+/* ____ Menu-bar ____ */
+
+    #main-menubar{
+      height: calc(var(--toolbar-height-personal) +  2px);
+      background-color: var(--toolbar-bgcolor) !important;
+      color: var(--arrowpanel-color);
+      border-radius: 0px !important;
+      box-shadow: inset 0 4px var(--lwt-frame),inset 0 4px var(--lwt-frame),inset 0 4px var(--lwt-frame),inset 0 4px var(--lwt-frame) !important;
+    }
+
+    #toolbar-menubar[autohide="true"] #menubar-items::after,
+    #toolbar-menubar[autohide="true"] #menubar-items::before{
+        content: "";
+        display: flex;
+        margin-top: 4px !important;
+        width: 2px;
+        height: calc(var(--tab-min-height) +  1 * var(--tab-block-margin,0px) + 0px);
+        background-color: var(--lwt-frame) !important;  
+    }
+    
+/* Border in -non default colors- config - solid themes */
+@supports -moz-bool-pref("floorpone.without-default-colors") {
+    #main-menubar{
+          box-shadow: inset 0 1px 0 0 var(--lwt-frame), inset 0 1px 0 0 var(--lwt-frame),inset 0 1px 0 0 var(--lwt-frame),
+                      inset 0px -1px 0 0  #50505040,  /* abajo */
+                      inset 0 4px var(--lwt-frame),
+                      inset 0px 5px 0 0  #50505040,   /* top */
+                      inset -1px 0 0 0  #50505040,    /* right */ 
+                      inset 1px 0 0 0  #50505040      /* Left */
+                      !important;
+        }}
+
+/* Compatibilidad para - window controls on left - en linux */
+    
+@media (-moz-gtk-csd-reversed-placement){
+    :root:not([sizemode="fullscreen"]) #nav-bar{
+        border-width: 0px !important;
+        padding-inline-end: 0px !important;
+        padding-inline-start: calc(var(--uc-window-control-width) + 14px ) !important;
+    }
+    
+    :root:not([inFullscreen])[sizemode="normal"] #nav-bar{
+        padding-inline: calc(var(--uc-window-control-width) + 54px ) calc(var(--uc-window-control-width) + 0px ) !important;
+    }
+    
+    :root:not([sizemode="fullscreen"]) #nav-bar-overflow-button:after,
+    :root:not([chromehidden~="toolbar"], [sizemode="fullscreen"]) #nav-bar:not([nonemptyoverflow]) #nav-bar-customization-target > :is(toolbarbutton, toolbaritem):last-child:after{
+        content: none;
+    }
+  }
+
+/* ##################################################### MENU ##################################################### */
+
+@media (-moz-platform: windows), (-moz-platform: linux) {
+    
+    :root {
+        --margin-left-icons-personal: calc(var(--padding-left-tab) / 2 - 23px) !important;     /* Nuevo margen-left del ícono -menu- */
+        --margin-right-icons-personal: 10px !important;                                        /* Nuevo margen-left del ícono -menu- */
+        --padding-left-tab: 52px !important;                                                   /* Nuevo tamaño botón -Menu- */
+    }
+
+/* Tamaño */
+    
+    :root:not([chromehidden~="toolbar"]) #PanelUI-button {
+        height: 40px !important;
+    }
+   
+    :root:not([chromehidden~="toolbar"]) #PanelUI-menu-button:not([open]) {
+        width: calc(var(--padding-left-tab) - 6px) !important;
+        padding-inline: calc(var(--padding-left-tab)/2 - 14px) !important;
+    }
+    
+/* Alinear botón en ventana maximizada, ventana normal y fullscreen */
+        
+    :root:not([chromehidden~="toolbar"],[sizemode="normal"],[sizemode="fullscreen"]) #PanelUI-menu-button[open] .toolbarbutton-badge-stack {
+        padding-inline-start: calc(var(--margin-left-icons-personal) + 6px) !important;
+    }
+    
+    :root:not([chromehidden~="toolbar"]):is([sizemode="normal"],[sizemode="fullscreen"]) #PanelUI-menu-button[open] .toolbarbutton-badge-stack {
+        margin-inline-start: calc(var(--margin-left-icons-personal) + 2px) !important;
+    }
+       
+/* Posición margin-top normal-maximized-fullscreen */
+        
+    :root:not([chromehidden~="toolbar"]) #PanelUI-menu-button>.toolbarbutton-badge-stack {
+        margin-block-start: 4px !important;
+        --toolbarbutton-inner-padding: 4px !important;
+    }
+    
+/* menu :hover y open */
+    
+    :root:not([chromehidden~="toolbar"],[sizemode="normal"],[sizemode="fullscreen"]) 
+        #PanelUI-menu-button[open]>.toolbarbutton-badge-stack {
+            min-height: 30px !important; /* Sirve para alinear al cambiar the height de pestañas */
+            max-height: 30px !important;
+    }
+    
+/* Padding top para hacer espacio para la fila del Label menú */
+    
+    :root:not([chromehidden~="toolbar"])[sizemode="maximized"] #appMenu-popup>panelmultiview>box>box>panelview {
+        padding-top: 30px !important;
+    }
+    
+/* Margin top para subir el menú [open] */
+    
+    :root:not([chromehidden~="toolbar"])[sizemode="maximized"] #appMenu-popup {
+        --menu-plus-label-width: 83px !important;
+        --button-height-personal: 29px !important;
+        margin-top: calc(-6px - var(--button-height-personal)) !important;
+        clip-path: polygon(0% 0%, 0% 100%, 1% 53%, 0 9px, var(--menu-plus-label-width) 9px,
+                   var(--menu-plus-label-width) var(--button-height-personal), 0 var(--button-height-personal), 0 100%, 100% 100%, 100% 0%);
+    }
+  }
+}
+    
+/* ################################################ Código para la extensión "Tab-Center-Reborn" ################################################ 
+   #############################################____________________________________________________############################################# */
+
+@supports -moz-bool-pref("floorpone.tree-tabs") {
+    
+    :root {
+        --delay: 150ms;                         /* delay before expanding tabs, set to '0' for no delay */
+        --transition-time: 0.2s;                /* Duración de expansión */
+        --positionX1: 58px;                     /* width of tree-tabs sidebar */
+        --fullscreen-sidebar-width: 1px;        /* width of the collapsed sidebar in fullscreen mode ('1px' or '48px') */
+    }
+    
+/* Necesario para que las sidebar no se exceda verticalmente del espacio del contenido*/
+    
+    #browser {
+        position: relative;
+    }
+    
+    #sidebar-box:not([lwt-sidebar]){
+        appearance: unset !important;
+    }
+
+    #sidebar-box:is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]) {
+        z-index: 1;
+    }
+
+    #sidebar-box:is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]) #sidebar-header {
+        visibility: collapse;
+        display: none;
+    }
+
+    :is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]) #sidebar,
+    #sidebar-box:is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]) {
+        min-width: 58px !important;
+        max-width: 58px !important;
+        width: 58px;
+    }
+    
+/* ################################################################### (tree-tabs) on left #################################################################### */
+    
+    #sidebar-box:is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]):not([hidden]) {
+        display: block;
+        position: absolute;
+        overflow: hidden;
+        z-index: 1;
+        top: 0px;
+        bottom: 0px;
+        left: calc(var(--my-vertical-toolbar-width) + 0px);
+        outline: none !important;
+        box-shadow: none !important;
+    }
+    
+/* ####################### Floorp-bar -(OFF)- ####################### */
+    
+    /* Floorp-bar (off) - Firefox-sidebar(Tree-tabs) on left */
+    
+    /* Quitamos margen izquierda */
+    :root:not([sizemode="fullscreen"])[invisibleBMS] 
+        #sidebar-box[style*="order: 3;"]:is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"])[checked="true"]{
+            left: 0px !important;
+            margin-inline: 0px !important;
+        }
+    
+    /* Floorp-bar (off): firefox-sidebar + webpage */
+    :root:not([sizemode="fullscreen"])[invisibleBMS] 
+        #sidebar-box[style*="order: 3;"]:is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"])[checked="true"] 
+        ~ #appcontent{
+            padding: 1px 4px 4px calc(var(--my-vertical-toolbar-width) + 6px) !important;
+    }
+
+/* ################################################################### (tree-tabs) on right ################################################################### */
+    
+    #sidebar-box[style*="order: 6;"]:is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]):not([hidden]) {
+        display: block;
+        position: absolute;
+        overflow: hidden;
+        z-index: 1;
+        right: 0px !important;
+        left: initial !important;
+        bottom: 0;
+        outline: none !important;
+    }
+    
+/* ############################ Floorp-sidebar -(OFF)- ############################ */
+    
+    /* Floorp-sidebar (off) - Firefox-sidebar(Tree-tabs) on right */
+    
+    :root:not([sizemode="fullscreen"])[invisibleBMS] 
+        #sidebar-box[style*="order: 6;"]:is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"])[checked="true"] 
+        ~ #appcontent{
+            padding: 1px calc(var(--my-vertical-toolbar-width) + 6px) 4px 4px !important;
+        }
+    
+/* ################################################################### Floorp-bar -(ON)- ################################################################### 
+   ######################################################################################################################################################### */
+    
+    /* Floorp-bar tamaño y position */
+    :root:not([chromehidden~="toolbar"],[sizemode="fullscreen"],[invisibleBMS]) 
+        #sidebar-select-box:is([style="overflow: hidden auto; order: 0;"]){
+            top: initial !important;
+            border: 0px !important;
+            height: calc(100% - 4px) !important;
+            max-height: calc(100% - 4px) !important;
+            padding-top: 0px !important;
+        }
+    
+/* ############## tree-tabs on left ############## */
+    
+    /* Floorp-sidebar (ON) + treetabs(ON) on left */
+    :root:not([chromehidden~="toolbar"],[sizemode="fullscreen"],[invisibleBMS]) #sidebar-box[style*="order: 3;"]:is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]):not([hidden]) 
+    ~ #sidebar-select-box:is([style*="overflow: hidden auto; order: 0;"]) ~ #appcontent {
+        padding: 0px 4px 4px calc(var(--positionX1) - 4px) !important;
+    }
+    /* Floorp-sidebar (ON) + treetabs(ON) on left + web content */
+    
+    :root:not([sizemode="fullscreen"],[invisibleBMS]) 
+        #sidebar-box:is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"])[checked="true"] 
+        + #sidebar-splitter + .browser-sidebar2 + .browser-sidebar2:is(#sidebar-splitter2[hidden="false"]) ~ #appcontent{
+            padding: 0px 4px 4px 0px !important;
+    }
+    
+    :root:not([sizemode="fullscreen"],[invisibleBMS]) 
+        #sidebar-box:is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"])[checked="true"]
+        + #sidebar-splitter + #sidebar2-box:is([style*="min-width: auto; order: 1;"]) {
+            padding: 0px 0px 4px 0px !important;
+            margin-left: calc(var(--my-vertical-toolbar-width) + 48px + 10px) !important;
+    }
+    
+/* ############## tree-tabs on right ############## */
+    
+    /* Floorp-sidebar (ON) - Tree-tabs(ON) on right */
+    
+    :root:not([sizemode="fullscreen"],[invisibleBMS]) 
+        #sidebar-box[style*="order: 6;"]:is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"])[checked="true"] 
+        ~ #appcontent{
+            padding: 0px calc(var(--my-vertical-toolbar-width) + 6px) 4px 0px !important;
+        }
+    
+    :root:not([sizemode="fullscreen"],[invisibleBMS]) 
+        #sidebar-box[style*="order: 6;"]:is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"])[checked="true"]
+        ~ #sidebar2-box {
+            padding: 0px 0px 4px 0px !important;
+            margin-left: calc(var(--my-vertical-toolbar-width) + 4px) !important;
+        }
+    
+    /* Floorp-bar on left + treetabs on right */
+    #main-window:not([inFullscreen]) #sidebar-box[style*="order: 6;"]:is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]):not([hidden]) 
+    ~ #sidebar2-box:is([style*="min-width: 0px; order: 1;"]) ~ #sidebar-select-box:is([style*="overflow: hidden auto; order: 0;"]) ~ #appcontent {
+        padding: 0px calc(var(--positionX1) + 0px) 4px 0px !important;
+    }
+    
+    /* Floorp-bar on left + floorp-sidebar(ON) + treetabs on right */
+    #main-window:not([inFullscreen]) #sidebar-box[style*="order: 6;"]:is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]):not([hidden]) 
+    ~ #sidebar2-box:is([style*="min-width: auto; order: 1;"]) {
+        margin-left: calc(var(--my-vertical-toolbar-width) + 4px) !important;
+    }
+    
+     #main-window:not([inFullscreen]) #sidebar-box[style*="order: 6;"]:is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]):not([hidden]) 
+    ~ #sidebar2-box:is([style*="min-width: auto; order: 1;"]) ~ #sidebar-select-box:is([style*="overflow: hidden auto; order: 0;"]) ~ #appcontent  {
+        padding: 0px calc(var(--positionX1) + 0px) 4px 0px !important;
+    }
+
+/* ------------------------------------------------------- Code Default ------------------------------------------------------- */
+
+/* use :where() selector to lower specificity */
+    
+    :where(#main-window[inFullscreen]) #sidebar-box:is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]):not([hidden]) {
+        min-width: var(--fullscreen-sidebar-width) !important;
+        max-width: var(--fullscreen-sidebar-width) !important;
+        margin-left: 0px !important;
+        left: 0 !important;
+        top: 0 !important;
+    }
+    #sidebar-box:is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]):hover #sidebar,
+    #sidebar-box:is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]):hover {
+        min-width: 10vw !important;
+        width: 30vw !important;
+        max-width: 200px !important;
+        z-index: 1 !important;
+        transition: all var(--transition-time) ease var(--delay);
+    }
+    
+    /* used for delay function */
+
+    #sidebar-box:is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]):not(:hover) #sidebar,
+    #sidebar-box:is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]):not(:hover) {
+        transition: all var(--transition-time) ease 0s;
+    }
+
+    @media (width >= 1200px) {
+        #sidebar-box:is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]):hover #sidebar,
+        #sidebar-box:is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]):hover {
+            max-width: 250px !important;
+        }
+    }
+    
+    /* Code for only tree-style-tab extension 
+    #sidebar-box[sidebarcommand*="treestyletab"] #sidebar,    
+    #sidebar-box[sidebarcommand*="treestyletab"]:hover {
+      min-width: 250px !important;
+      max-width: 250px !important; }*/
+    /* -------------------------------------- */
+
+    :is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]) ~ #sidebar-splitter {
+        display: none;
+    }
+
+    :is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]) #sidebar {
+        max-height: 100%;
+        height: 100%;
+    }
+    
+/* -----------------------------------------------------------------------------------------------------------------------------*/
+
+    #main-window[inFullscreen] #sidebar {
+        height: 100vh;
+    }
+
+    :is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]) #sidebar-header {
+        background: #0C0C0D;
+        border-bottom: none !important;
+    }
+
+    :is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]) ~ #sidebar-splitter {
+        border-right-color: #0C0C0D !important;
+        border-left-color: #0C0C0D !important;
+    }
+
+    :is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]) #sidebar-switcher-target,
+    :is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]) #sidebar-close {
+        filter: invert(100%);
+    }
+    
+/* ################################################## FLOORP-sidebar on right side ################################################## */
+
+@supports -moz-bool-pref("floorpone.sidebar-on-right") {
+    
+    /* Posición tree-tabs */
+    :root:not([sizemode="fullscreen"],[invisibleBMS])
+    #sidebar-box[style*="order: 0;"]:is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]):not([hidden]){
+                left: 0px !important;
+        margin-inline: 0px !important;
+    }
+    
+/* ###################################################### Nuevo espacio alrededor del contenido web ###################################################### */
+    
+/* ############## Tree-tabs on left ############## */
+    
+        /* Sobreescribo código de left-sidebar */
+        :root:not([sizemode="fullscreen"],[invisibleBMS]) #sidebar-box[style*="order: 0;"]:is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]) 
+            ~ #sidebar2-box:is([style*="min-width: 0px; max-width: 0px; order: 6;"]):not(splitter)    {
+                margin-inline-start: 0px !important;
+        }
+
+        /* Floorp-bar on right: tree-tabs on left + web content */
+        :root:not([sizemode="fullscreen"],[invisibleBMS]) 
+            #sidebar-box:is([checked="true"][style*="order: 0;"]):is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]) + #sidebar-splitter +
+            #sidebar2-box + #sidebar-splitter2 + #sidebar-select-box:is([style*="overflow: hidden auto; order: 7;"]) + #appcontent{
+                padding: 0px 4px 4px calc(var(--positionX1) + 0px) !important;
+        }
+    
+        /* Floorp-bar on right: tree-tabs on left + web content + floorp-sidebar */
+    
+    :root:not([sizemode="fullscreen"], [invisibleBMS]) #sidebar-box:is([checked="true"][style*="order: 0;"]):is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"])  + #sidebar-splitter + 
+        #sidebar2-box:is([style*="min-width: auto; order: 6;"]):not([hidden]) + #sidebar-splitter2 + #sidebar-select-box:is([style*="overflow: hidden auto; order: 7;"]) + #appcontent {
+            padding: 0px 0px 4px calc(var(--positionX1) + 0px) !important;
+    }
+    
+/* ############## Tree-tabs on right ############## */
+    
+    :root:not([sizemode="fullscreen"],[invisibleBMS]) #sidebar-box:is([checked="true"][style*="order: 4;"]):is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]):not([hidden]) {
+        display: block;
+        position: absolute;
+        overflow: hidden;
+        z-index: 1;
+        right: calc(var(--my-vertical-toolbar-width) + 0px) !important;
+        left: initial !important;
+        bottom: 0;
+        outline: none !important;
+    }
+    
+    /* Sobreescribo codigo de left-sidebar */
+    :root:not([sizemode="fullscreen"], [invisibleBMS]) #browser:has(#sidebar2-box[style*="min-width: auto; order: 6;"]) 
+        #sidebar-box[checked="true"][style*="order: 4;"]:is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]) {
+            margin-right: 0px !important;
+    }
+    
+    :root:not([sizemode="fullscreen"], [invisibleBMS]) #browser:has(#sidebar2-box[style*="min-width: 0px; order: 6;"]) 
+        #sidebar-box[checked="true"][style*="order: 4;"]:is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]) {
+            margin-right: 0px !important;
+    }
+    
+     /* Espacio tree-tabs on right */
+    :root:not([sizemode="fullscreen"],[invisibleBMS]) #sidebar-box:is([checked="true"][style*="order: 4;"]):is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"])  + #sidebar-splitter + 
+        #sidebar2-box:is([style*="min-width: 0px; order: 6;"]) + #sidebar-splitter2 + #sidebar-select-box:is([style*="overflow: hidden auto; order: 7;"]) + #appcontent {
+            padding: 0px calc(var(--positionX1) + 0px) 4px  4px !important;
+    }
+    
+    /* Floorp-bar on left + floorp-sidebar(ON) + treetabs on right */
+    :root:not([sizemode="fullscreen"],[invisibleBMS]) #sidebar-box:is([style*="order: 4;"][checked="true"]):is([sidebarcommand*="tabcenter"],[sidebarcommand*="treestyletab"]):not([hidden]) 
+        ~ #sidebar2-box:is([style*="min-width: auto; order: 6;"]) {
+            margin-right: calc(var(--my-vertical-toolbar-width) + 6px) !important;
+    }
+  }
+}
