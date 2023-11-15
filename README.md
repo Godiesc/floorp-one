@@ -21,7 +21,6 @@
    <li>Install and use a compatible theme.</li>
    <li>Restart the browser.</li>
 </ol>
-</br>
 
 ## Temas - Themes
 <ul><li>Temas Principales - Main Themes: <a href="https://addons.mozilla.org/es/firefox/addon/beautiful-focused-tab/">🧿light/dark adaptive Theme</a></li>
