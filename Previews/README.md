@@ -1,12 +1,14 @@
 # Preview of features of Floorp-ONE theme
 
+![floorpone-default](https://github.com/Godiesc/floorp-one/assets/22057609/7dd7f430-692a-4a34-a5d0-0293506c7ba5)
+
 ## Floor-sidebar on right side
 <table><tr>
     <td>floorpone.sidebar-on-right</td>
     <td>true</td></tr>
 </table>
 
-![imagen](https://github.com/Godiesc/firefox-one/assets/22057609/978cc30c-020f-45d8-ac7e-72f9a9cdbfa7)
+![floorp-right-side](https://github.com/Godiesc/floorp-one/assets/22057609/aae8b3e2-0164-4b17-b314-d73bf88660c2)
 
 ## Default colors disabled
 <table><tr>
@@ -14,9 +16,9 @@
     <td>true</td></tr>
 </table>
 
-![imagen](https://github.com/Godiesc/firefox-one/assets/22057609/b7f2c33e-63ef-4484-9765-aa1be6c3b747)
+![floorpone-non-default-colors](https://github.com/Godiesc/floorp-one/assets/22057609/2ca794a8-657c-443c-85d0-29badffbdfac)
 
-## Tree tabs style enabled - [[e.g. Tab Center Reborn]](https://addons.mozilla.org/es/firefox/addon/tabcenter-reborn/)
+## Tree tabs style - [[e.g. Tab Center Reborn]](https://addons.mozilla.org/es/firefox/addon/tabcenter-reborn/)
 <p>You should active the tree-tabs option on Preferences.</p>
 <table><tr>
     <td>floorpone.tree-tabs</td>
