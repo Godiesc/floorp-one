@@ -3,7 +3,7 @@
 <ul><li>(ES) Tema para los amantes de la skin de Opera-ONE.</li>
 <li>(EN) A theme for Opera-ONE Skin Lovers.</li></ul>
 
-![Light_dark_splash](https://github.com/Godiesc/firefox-one/assets/22057609/dd708561-8227-48a9-b287-64696f8116fb)
+![floorpone-default](https://github.com/Godiesc/floorp-one/assets/22057609/ad6d5589-e3e9-4c29-a0d1-36044d54f18d)
 
 ## ¿Cómo instalar? - How to install?
 
@@ -22,8 +22,6 @@
    <li>Restart the browser.</li>
 </ol>
 </br>
-
-> <p>⚠ Notice: The latest code updated in the repository (code > download zip) may work well only on beta or nightly versions.</p>
 
 ## Temas - Themes
 <ul><li>Temas Principales - Main Themes: <a href="https://addons.mozilla.org/es/firefox/addon/beautiful-focused-tab/">🧿light/dark adaptive Theme</a></li>
