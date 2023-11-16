@@ -49,7 +49,7 @@
     <td width="320px">floorpone.without-default-colors</td>
     <td width="50px">true</td></tr>
 </table>
-<li><a href="https://github.com/Godiesc/floorp-one/tree/main/Previews#tree-tabs-style-enabled---eg-tab-center-reborn">Tree-tabs-style</a> (e.g. <a href="https://addons.mozilla.org/es/firefox/addon/tabcenter-reborn/">Tab-center-reborn</a>) </li>
+<li><a href="https://github.com/Godiesc/floorp-one/tree/main/Previews#tree-tabs-style---eg-tab-center-reborn">Tree-tabs-style</a> (e.g. <a href="https://addons.mozilla.org/es/firefox/addon/tabcenter-reborn/">Tab-center-reborn</a>) </li>
 <table><tr>
     <td width="320px">floorpone.tree-tabs</td>
     <td width="50px">true</td></tr>
