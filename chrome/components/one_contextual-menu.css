@@ -22,10 +22,8 @@ menupopup > menuitem, menupopup > menu {
 /* separador de items */
 
 menuseparator {
-    appearance: none !important;
-    border-color: var(--panel-separator-color) !important;
     padding-inline-end: 0 !important;
-    margin-inline: 12px 0px !important;
+    padding-inline-start: 12px !important;
 }
 
 @media (-moz-platform: linux) {
@@ -58,9 +56,7 @@ menupopup:not(#PlacesToolbar) menupopup {
 
 .menupopup-arrowscrollbox {
     appearance: none !important;
-    background-image: linear-gradient(var(--arrowpanel-background), var(--arrowpanel-background)),
-                      linear-gradient(transparent, transparent),
-                      var(--noise-urlbar-personal, var(--noise-urlbar-personal, none)) !important;
+    background-image: var(--noise-urlbar-personal) !important;
     background-color: var(--arrowpanel-background, #1c1726) !important; 
     box-shadow: 0px 0px 0 1px var(--border-contrast-color, #09080d) !important;
     color: var(--arrowpanel-color, #ffffff) !important;
@@ -77,7 +73,7 @@ menupopup > menuitem:not([disabled="true"]), menupopup > menu {
 
 /* Color to :hover items */
 
-menupopup > menuitem:not([disabled="true"]):hover, menupopup > menu:hover {
+menupopup > menuitem:not([disabled="true"]):is(:hover,[_moz-menuactive]), menupopup > menu:is(:hover,[_moz-menuactive]) {
     appearance: none !important;
     background-color: var(--button-active-bgcolor) !important;
     color: white !important;
@@ -90,7 +86,7 @@ menupopup > menuitem:is([disabled="true"]):hover {
 
 /* Necesario para quitar glitch indeseado al mover el mouse sobre items inhabilitados */
 
-menupopup > menuitem:is([disabled="true"]), menupopup > menu:is([disabled="true"]) {
+menupopup > menuitem:is([disabled="true"]), menupopup > menu:is([disabled="true"]), #context-navigation > menuitem:not([selected="true"]){
     /*display: none !important;*/
     appearance: none !important;
     background-color: transparent !important;
@@ -215,7 +211,7 @@ menugroup > menuitem:not([selected="true"]), menugroup > menu {
     
 #context-navigation > menuitem[_moz-menuactive="true"]:not([disabled]) {
     appearance: none !important;
-    background: var(--button-bgcolor) !important;
+    background: var(--button-active-bgcolor) !important;
     color: #ffffff !important;
 }
     

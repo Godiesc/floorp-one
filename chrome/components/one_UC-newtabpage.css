@@ -4,114 +4,229 @@
 @media (prefers-color-scheme: dark){:root{ scrollbar-color: #38375580 #18173530 !important; }}      /*Color de la barra de desplazamiento*/
 @media(prefers-color-scheme: light){:root{ scrollbar-color: #d8d9da #f4f2f7!important; }}           /*Color de la barra de desplazamiento*/
 
-/**{ scrollbar-width: thin !important}*/                                                            /*Barra de desplazamiento delgada*/
+/**{ scrollbar-width: thin !important}                                                              /*Barra de desplazamiento delgada*/
 
 .alt-stop { stop-color: var(--left-color) !important; }                                             /* left color logo-and-wordmark */
 .main-stop { stop-color: var(--right-color) !important; }                                           /* right color logo-and wordmark*/
 
 @-moz-document url(chrome://browser/content/browser.xul), url(about:newtab), url(about:home), url(about:privatebrowsing) {
    
+    body {
+    /*--newtab-search-icon: url(chrome://global/skin/icons/search-glass.svg) !important;            /* Image in the newtab searchbox */
+    --newtab-background-color-secondary: transparent !important;                                    /* Background color of pinned sites and search box */
+    --newtab-element-hover-color: var(--button-active-bgcolor) !important;                          /* Background color when clicking on the 3 dot menu icon */
+
+    --newtab-element-secondary-hover-color: var(--button-hover-bgcolor) !important;                /* color when 'hover' on menu items three dots */
+
+    --newtab-element-secondary-active-color: var(--button-hover-bgcolor) !important;               /* Color clic en items del menú de 3 puntos */
+
+    --newtab-border-color: color-mix(in srgb, var(--newtab-background-color) 92%,                   /* 3-point menu and input-box border color when editing a site*/
+        var(--newtab-wordmark-color)) !important;
+        
+    --newtab-primary-action-background: var(--button-active-bgcolor) !important;                    /* Colors for 'Save' buttons and radiobuttons */
+        
+    --newtab-primary-element-text-color: var(--newtab-text-primary-color) !important;               /* check-box color */
+        
+    --newtab-element-secondary-color: color-mix( in srgb,                                           /* Color of inactive elements */
+      var(--newtab-background-color) 85%, var(--newtab-text-primary-color) ) !important;
+        
+    --newtab-overlay-color: color-mix(in srgb, var(--contrast-color) 46%, transparent) !important;  /* Big background when editing a site, semi-transparent */
+    }
+    
     @media (prefers-color-scheme: dark){
         
-    body{
-    --contrast-color: black !important;                                                       /* Variable fondo personal de contraste */
-    --border-contrast-color: #09080d !important;                                              /* Variable borde personal de contraste */
-        
-    --arrowpanel-background-personal: #171b1f !important;
-    --lwt-sidebar-background-color: #14141d !important;                                       /* Sidebar fondo */
-    --newtab-background-color: #030615 !important;                                            /* Color fondo general */
-
-    --newtab-background-color-secondary: transparent !important;                              /* color - fondo de sitios fijados, barra de búsqueda*/
-    --newtab-element-hover-color: var(--button-active-bgcolor) !important;                    /* color de fondo al hacer clic al ícono menú 3 puntos*/
-
-    --newtab-element-secondary-hover-color: var(--general-color) !important;                  /* color :hover items del menú tres puntos */
-
-    --newtab-element-secondary-active-color: var(--button-active-bgcolor) !important;         /* Color clic en items del menú de 3 puntos */
-
-    --newtab-border-color: color-mix(in srgb, var(--newtab-background-color) 88%,             /* Color borde menu de 3 puntos y de input-text al editar un sitio*/
-        var(--newtab-wordmark-color)) !important;
-
-    --newtab-text-primary-color: var(--newtab-wordmark-color) !important;                     /* label general */
-    --newtab-text-secondary-color: var(--newtab-wordmark-color) !important;                   /* Label secundaria */
-
-    --newtab-overlay-color: color-mix(in srgb, #090909 54%, transparent) !important;          /* fondo al editar sitio, transparente */
-
-    --newtab-primary-action-background: var(--general-color) !important;                      /* color de fondo de Boton "Guardar" y fondo de radiobuttons */
-
-    --newtab-element-secondary-color: color-mix( in srgb,                                     /* color elementos no activos */
-      var(--newtab-background-color) 90%, var(--newtab-wordmark-color) ) !important;
-
-    --newtab-primary-element-text-color: var(--newtab-text-primary-color) !important;         /* color bola de radiobutton */
-
-    }}
+        body {
+            --contrast-color: black !important;                                                     /* Personal background color for contrast */
+            --border-contrast-color: #09080d !important;                                            /* Personal border color for contrast */
+            --arrowpanel-background: #171b1f  !important;                                            /* Background color for 3 dot menu */
+        }}
     
     @media (prefers-color-scheme: light){
         
-    body{
-    --contrast-color: white !important;                                                       /* Variable fondo personal de contraste */
-    --border-contrast-color: #acacac50 !important;                                            /* Variable borde personal de contraste */
-        
-    --arrowpanel-background-personal: #f9f9f9 !important;
-    --lwt-sidebar-background-color: #efeff5 !important;                                       /* Sidebar fondo */
-    --newtab-background-color: #d0dbe3 !important;                                            /* Color fondo general */
-        
-    --newtab-background-color-secondary: transparent !important;                              /* color - fondo de sitios fijados, barra de búsqueda */
-    --newtab-element-hover-color: var(--button-active-bgcolor) !important;                    /* color de fondo al hacer clic al ícono menú 3 puntos */
-        
-    --newtab-element-secondary-hover-color: var(--general-color) !important;                  /* color :hover items del menú tres puntos */
+        body{
+            --contrast-color: white !important;                                                     /* Personal background color for contrast */
+            --border-contrast-color: #acacac50 !important;                                          /* Personal border color for contrast */
+            --arrowpanel-background : #f9f9f9 !important;                                           /* Background color for 3 dot menu */
 
-    --newtab-element-secondary-active-color: var(--button-active-bgcolor) !important;         /* Color clic en items del menú de 3 puntos */
- 
-    --newtab-border-color: color-mix(in srgb, var(--newtab-background-color) 88%,             /* Color borde menu de 3 puntos y de input-text al editar un sitio */
-        var(--newtab-wordmark-color)) !important;
-        
-    --newtab-text-primary-color: var(--newtab-wordmark-color) !important;                     /* label general */
-    --newtab-text-secondary-color: var(--newtab-wordmark-color) !important;                   /* Label secundaria */
-        
-    --newtab-overlay-color: color-mix(in srgb,                                                /* fondo al editar sitio, transparente */
-      var(--arrowpanel-background-personal) 34%, transparent) !important;
-        
-    --newtab-primary-action-background: var(--general-color) !important;                      /* color de fondo de Boton "Guardar" y fondo de radiobuttons */
-        
-    --newtab-element-secondary-color: color-mix( in srgb,                                     /* color elementos no activos */
-      var(--newtab-background-color) 86%, var(--newtab-wordmark-color) ) !important;
-        
-    --newtab-primary-element-text-color: var(--arrowpanel-background-personal) !important;    /* color bola de radiobutton */
-        
-    }}
+        }}
     
-/* Quitar fondo negro (añadidos por flooorp) de muchos elementos */
+/* Newtab background with default colors*/
     
-button, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]), textarea, select, [contenteditable="true"] {
-    background-color: transparent !important;
-    color: var(--newtab-text-primary-color) !important;
-    box-shadow: none !important;
-    border-color: #50505020 !important;
+    @media not (-moz-bool-pref:"floorpone.without-default-colors") {
+        @media (prefers-color-scheme: dark){
+            body{
+            --newtab-background-color: #030615 !important;                                    /* Color fondo general */
+            }}
+        @media (prefers-color-scheme: light){
+            body{
+            --newtab-background-color: #d0dbe3 !important;                                    /* Color fondo general */
+            }}
     }
     
-/*------------------------fondo (imagen), Logo y Wordmark------------------------*/
+/* _______________________________________________________ Wallpapers _______________________________________________________ */
     
-#root{
-    background: linear-gradient(var(--brightness-wallpaper), var(--brightness-wallpaper)),
-                linear-gradient(var(--brightness-wallpaper), var(--brightness-wallpaper)), 
-                var(--lwt-main-image) no-repeat right top fixed !important;
-    background-size: var(--wallpaper-size) !important;
-    background-position-x: var(--background-align-x, initial) !important;
-    background-position-y: var(--background-align-y) !important;
-    border-radius: 8px !important;
-    filter: brightness(99%) !important;
+    @media not (-moz-bool-pref:"floorpone.main-image"){
+
+        /* Dark 1 - Fuchsia */
+        #dark-sky,
+        #photographs[style='background-image: url("https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/e94b1e49-c518-40d6-98e3-dffab6cc370d.avif");'],
+        body[style*="--newtab-wallpaper-light: url(https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/e94b1e49-c518-40d6-98e3-dffab6cc370d.avif);"]{
+            background-image: var(--wallpaper-dark1) !important;
+        }
+
+        /* Dark 2 - Ultraviolet */
+        #dark-mountain,
+        #photographs[style='background-image: url("https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/af6073d2-cbb2-4e28-b642-3327d14808b2.avif");'],
+        body[style*="--newtab-wallpaper-light: url(https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/af6073d2-cbb2-4e28-b642-3327d14808b2.avif);"]{
+            background-image: var(--wallpaper-dark2) !important;
+        }
+
+        /* Dark 3 - Blue */
+        #dark-panda,
+        #photographs[style='background-image: url("https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/6b8eb3cf-f232-4c7b-a179-afd174555134.avif");'],
+        body[style*="--newtab-wallpaper-light: url(https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/6b8eb3cf-f232-4c7b-a179-afd174555134.avif);"]{
+            background-image: var(--wallpaper-dark3) !important;
+        }   
+
+        /* Dark 4 - Swamp */
+        #dark-landscape,
+        #photographs[style='background-image: url("https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/10e23599-85bc-4660-ae06-7a67befbbcf9.avif");'],
+        body[style*="--newtab-wallpaper-light: url(https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/10e23599-85bc-4660-ae06-7a67befbbcf9.avif);"]{
+            background-image: var(--wallpaper-dark4) !important;
+        }
+
+        /* Dark 5 - Gray */
+        #dark-beach,
+        #photographs[style='background-image: url("https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/966b18ad-3733-41c4-92f6-c89cdf1381d0.avif");'],
+        body[style*="--newtab-wallpaper-light: url(https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/966b18ad-3733-41c4-92f6-c89cdf1381d0.avif);"]{
+            background-image: var(--wallpaper-dark5) !important;
+        }
+
+        /* Light 1 - Fuchsia */
+        #light-panda,
+        #photographs[style='background-image: url("https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/dfd3762e-f77d-4b6e-ac75-32eb2549ef40.avif");'],
+        body[style*="--newtab-wallpaper-light: url(https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/dfd3762e-f77d-4b6e-ac75-32eb2549ef40.avif);"]{
+            background-image: var(--wallpaper-light1) !important;
+        }
+
+        /* Light 2 - Ultraviolet */
+        #light-landscape,
+        #photographs[style='background-image: url("https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/d9289c5b-8c78-4b27-b5d8-afe7285ce7d1.avif");'],
+        body[style*="--newtab-wallpaper-light: url(https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/d9289c5b-8c78-4b27-b5d8-afe7285ce7d1.avif);"]{
+            background-image: var(--wallpaper-light2) !important;
+        }
+
+        /* Light 3 - BLue */
+        #light-mountain,
+        #photographs[style='background-image: url("https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/5344443f-f427-4029-bc6b-68bc22f83355.avif");'],
+        body[style*="--newtab-wallpaper-light: url(https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/5344443f-f427-4029-bc6b-68bc22f83355.avif);"]{
+            background-image: var(--wallpaper-light3) !important;
+        }
+
+        /* Light 4 - Rose */
+        #light-sky,
+        #photographs[style='background-image: url("https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/45ecab20-ffb9-47b4-94ff-07a5f8b9f53f.avif");'],
+        body[style*="--newtab-wallpaper-light: url(https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/45ecab20-ffb9-47b4-94ff-07a5f8b9f53f.avif);"]{
+            background-image: var(--wallpaper-light4) !important;
+        }
+
+        /* Light 5 - Green */
+        #light-beach,
+        #photographs[style='background-image: url("https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/56a7f3ae-70cc-45f2-82ec-1d39acdd3b8d.avif");'],
+        body[style*="--newtab-wallpaper-light: url(https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/56a7f3ae-70cc-45f2-82ec-1d39acdd3b8d.avif);"]{
+            background-image: var(--wallpaper-light5) !important;
+        }
     }
     
-body{
-    border-radius: 8px !important;
-    filter: none !important;
-    backdrop-filter: none !important;
-    }  
+    /* Accent color for each wallpaper */
+    
+    :root:has(#photographs[style='background-image: url("https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/e94b1e49-c518-40d6-98e3-dffab6cc370d.avif");']){
+        --general-color: var(--general-color-dark1) !important;    }
+
+    :root:has(#photographs[style='background-image: url("https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/af6073d2-cbb2-4e28-b642-3327d14808b2.avif");']){
+        --general-color: var(--general-color-dark2) !important;    }
+    
+    :root:has(#photographs[style='background-image: url("https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/6b8eb3cf-f232-4c7b-a179-afd174555134.avif");']){
+        --general-color: var(--general-color-dark3) !important;    }
+
+    :root:has(#photographs[style='background-image: url("https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/10e23599-85bc-4660-ae06-7a67befbbcf9.avif");']){
+        --general-color: var(--general-color-dark4) !important;    }
+
+    :root:has(#photographs[style='background-image: url("https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/966b18ad-3733-41c4-92f6-c89cdf1381d0.avif");']){
+        --general-color: var(--general-color-dark5) !important;    }
+
+    :root:has(#photographs[style='background-image: url("https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/dfd3762e-f77d-4b6e-ac75-32eb2549ef40.avif");']){
+        --general-color: var(--general-color-light1) !important;   }
+
+    :root:has(#photographs[style='background-image: url("https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/d9289c5b-8c78-4b27-b5d8-afe7285ce7d1.avif");']){
+        --general-color: var(--general-color-light2) !important;   }
+
+    :root:has(#photographs[style='background-image: url("https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/5344443f-f427-4029-bc6b-68bc22f83355.avif");']){
+        --general-color: var(--general-color-light3) !important;   }
+
+    :root:has(#photographs[style='background-image: url("https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/45ecab20-ffb9-47b4-94ff-07a5f8b9f53f.avif");']){
+        --general-color: var(--general-color-light4) !important;   }
+
+    :root:has(#photographs[style='background-image: url("https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/newtab-wallpapers-v2/56a7f3ae-70cc-45f2-82ec-1d39acdd3b8d.avif");']){
+        --general-color: var(--general-color-light5) !important;   }
+    
+    /* rearrangement of wallpapers */
+    
+    #dark-sky { order: 1 !important; }    
+    #dark-mountain { order: 2 !important; }
+    #dark-panda { order: 3 !important; }    
+    #dark-landscape { order: 4 !important; }
+    #dark-beach { order: 5 !important; }    
+    #light-panda { order: 6 !important; }    
+    #light-landscape { order: 7 !important; }    
+    #light-mountain { order: 8 !important; }    
+    #light-sky { order: 9 !important; }    
+    #light-beach { order: 10 !important; }
+        
+    /* Border color when 'hover' over wallpapers */
+
+    .wallpaper-list .wallpaper-input:not(:checked):hover {
+        outline: 1px solid #80808080 !important;
+    }
+    
+    /* Border color when 'hover' over selected wallpaper */
+
+    .wallpaper-list .wallpaper-input:checked:hover {
+        filter: none !important;
+        outline-color: var(--button-active-bgcolor) !important;
+    }
+    
+    .wallpaper-input:checked{
+        padding: 1px !important;
+    }
+    
+    /* Remove credits from the image used as wallpaper */
+
+    .wallpaper-attribution, .releasenote { display: none !important; }
+    
+    /* Wallpaper default brightness and wallpaper para Main-image config */
+    
+    body{ backdrop-filter: var(--brightness-wallpaper) !important; }
+
+    @media (-moz-bool-pref:"floorpone.main-image") {
+        
+        body{
+            background-image: var(--lwt-main-image, initial) !important;
+            background-repeat: repeat-x, var(--lwt-background-tiling), no-repeat !important;
+            background-size: calc(100% + var(--my-vertical-toolbar-width, 0px) + var(--extension-width, 0px) + 10px) auto !important;
+            background-attachment: fixed !important;    
+            background-position-x: right -4px !important;
+            background-position-y: var(--background-align-y) !important;
+            backdrop-filter: brightness(9%) !important;
+            backdrop-filter: blur(12px) !important;
+        }
+    }
 
 .logo{
+    /*background: url("../icons/foxlogo.svg") no-repeat !important;/**/
     background-size: cover !important;
-    height: 80px !important;
-    width: 80px !important;
+    max-height: 70px !important;
+    max-width: 70px !important;
     Opacity: var(--logo-wordmark-visibility) !important;
     display: var(--logo-wordmark-display) !important;
     -moz-context-properties: fill !important;
@@ -119,7 +234,7 @@ body{
     }
     
 .wordmark {
-    background: url("../images/floorp-wordmark.svg") no-repeat center center !important;
+    background-image: url("../icons/floorp-wordmark.svg") !important;
     background-size: cover !important;
     background-size: 140px !important;
     max-width: 140px !important;
@@ -136,13 +251,16 @@ body{
     }
     
 main {
-    margin-top: var(--newtab-pinnedsites-position-top, auto) !important;
-}
+    justify-content: var(--newtab-pinnedsites-position-top, center) !important;
+    }
     
 /* "Logo-wordmark" y search-box en una sola linea */
     
 @media screen and (min-width: 1000px){
-
+    
+    .wordmark{ 
+        margin-inline-end: 50px !important;  
+    }
     .search-wrapper, .search-inner-wrapper{
         display: var(--orientation-display) !important;
         justify-content: center !important;
@@ -153,12 +271,6 @@ main {
         margin-top: 16px !important;
     }
   }
-    
-/* ntp - Fondo general de la paginas newtab y home */
-    
-.activity-stream {
-    background-color: var(--newtab-background-color, #ff0000) !important;
-    }
     
 /* Eliminar scrollbar */
     
@@ -186,37 +298,53 @@ main {
     }
     
 .modalOverlayOuter{
-    backdrop-filter: blur(26px); 
+    backdrop-filter: blur(26px);     
     }
     
 .topsite-form .actions{
-    border-color: var(--border-contrast-color) !important;
+    border-color: color-mix(in srgb, var(--arrowpanel-background) 92%, var(--newtab-text-primary-color)) !important;
     }
     
 input[type="text"]{
+    background-color: var(--newtab-pinnedsites-background) !important;
     border-radius: 4px !important;
     border-color: var(--border-contrast-color) !important;
     }
     
 input:focus-visible, input:focus-visible{
-    outline: 1px solid var(--general-color) !important;
+    outline: 2px solid var(--general-color) !important;
+    outline-offset: -1px !important;
     border-color: var(--general-color) !important;
     }
+    
+/* ####################################### Fix bugs only in Floorp browser ####################################### */
+    
+    button:is(.context-menu-item button, .a11y-link-button, .personalize-button),
+    input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not(.wallpaper-input):not([type="text"]), 
+    textarea,
+    select,
+    [contenteditable="true"] {
+        background-color: transparent !important;
+        border-color: transparent !important;
+    }
+    
+    button:focus, #row-selector:focus{ box-shadow: none !important; }
+    
+    .context-menu-item button{ border-radius: 0px !important; }
     
 /* Menú de 3 puntos */
     
 .context-menu {
-    background-color: var(--arrowpanel-background-personal) !important; 
+    background-color: var(--arrowpanel-background) !important; 
     box-shadow: 0px 0px 0 1px var(--border-contrast-color) !important;
-    border: 1px solid color-mix(in srgb, var(--arrowpanel-background-personal) 92%, var(--newtab-text-primary-color)) !important;
+    border: 1px solid color-mix(in srgb, var(--arrowpanel-background) 92%, var(--newtab-text-primary-color)) !important;
     border-radius: 8px !important;
     z-index: 2 !important;
     }
     
 .context-menu > ul > li > button:hover {
-    background-color: var(--newtab-element-hover-color) !important;
-    border-radius: 0px !important;
     color: #ffffff !important;
+    background-color: var(--button-bgcolor) !important;
     }
     
 /* linea separadora */
@@ -225,12 +353,12 @@ input:focus-visible, input:focus-visible{
     margin-block: 2px !important;
     margin-inline-start: 6px !important;
     width: -moz-available !important;
+    border-color: #50505080 !important;  
     }
     
 /* Color de borde del boton "Guardar" */
     
 .actions button:not(.cancel), .actions button:focus:not(.cancel) {
-    background-color: var(--button-bgcolor) !important; 
     color: white !important;  
     border: transparent !important;
     }
@@ -253,20 +381,21 @@ input:focus-visible, input:focus-visible{
     border-color: #f85149 !important;
     }
 
-/* Botón "Personalizar" */
+    /* Botón "Personalizar" */
+
+    .icon.icon-settings {
+        background-image: url("../icons/edit.svg") !important;
+        opacity: 0.6 !important;
+        }
     
-.icon.icon-settings {
-    background-image: url("../images/edit.svg") !important;
-    opacity: 0.6;
+    .personalize-button:hover {
+        background-color: color-mix(in srgb, var(--contrast-color), transparent) !important;
+        opacity: 1 !important;
+        fill: white !important;
     }
-.personalize-button {
-    color: var(--newtab-background-color-primary) !important;
-    }
-.personalize-button:hover {
-    background-color: color-mix(in srgb, var(--contrast-color), transparent) !important;
-    fill: var(--newtab-wordmark-color)  !important;
-    border-radius: 5px !important;
-    opacity: 1 !important;
+
+    .lightWallpaper .personalize-button:hover{
+        fill: black !important;
     }
 
 /* Colores del botón "Cerrar" */
@@ -283,61 +412,132 @@ input:focus-visible, input:focus-visible{
     color: white  !important;
     }
     
-/* Colores de la sidebar deslizante para Personalizar la NewTab */
+/* _______________________________ Colors of the sliding sidebar used to customize the NewTab _______________________________ */
     
-    /* Fondo */
+    /* Change animation when it appears */ 
     
-.customize-menu {
-    background-color: color-mix(in srgb, var(--newtab-background-color) 80%, var(--newtab-overlay-color)) !important;
-    color: var(--newtab-wordmark-color) !important;
-    backdrop-filter: var(--personal-blur);
+    .customize-menu {
+        height: calc(100% - 12px) !important;
+        right: 6px !important;
+        top: 6px !important;
+        bottom: 6px !important;
+        padding-inline: 0px !important;
+        border-radius: 8px !important;
+        transform: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+    }
+    
+    .customize-menu.customize-animate-enter, .customize-menu.customize-animate-enter-done {
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    .customize-menu.customize-animate-exit, .customize-menu.customize-animate-exit-done {
+        opacity: 0 !important;
+        visibility: hidden !important;
+    }
+
+    .customize-menu.customize-animate-enter, .customize-menu.customize-animate-enter-done, 
+    .customize-menu.customize-animate-exit, .customize-menu.customize-animate-exit-done {
+        transition: visibility 300ms, opacity 300ms ease !important;
+    }
+    
+    /* Background */
+    
+    .customize-menu {
+        background-color: color-mix(in srgb, var(--newtab-background-color) ,var(--newtab-overlay-color)) !important;
+        color: var(--newtab-wordmark-color) !important;
+        backdrop-filter: var(--personal-blur); 
+    }
+    
+    /* Fixed 'wallpapers v2' section */
+    
+    .wallpaper-list.category {
+        background-color: var(--newtab-background-color) !important;
+        width: 432px !important;
+        height: 100% !important;
+        inset-inline-start: 0px !important;
+    }
+
+    .wallpaper-list{
+        padding: 25px 20px 25px 20px !important;
+        margin-block: 0px !important;
     }
     
     /* Combobox */
     
-.home-section .section .selector {
-    background-color: var(--newtab-element-secondary-color) !important;
-    border-color: color-mix(in srgb, var(--newtab-element-secondary-color) 96%, var(--newtab-wordmark-color)) !important;
-    border-radius: 6px !important; 
-    }
-    
-.home-section .section .selector:hover {
-    background-color: var(--button-active-bgcolor) !important;
-    border-color: transparent !important;
-    color: white !important;
-    }
-    
-    /* Sombra izquierda de la sidebar */
-    
-.customize-menu.customize-animate-enter-done, .customize-menu.customize-animate-enter-active {
-    box-shadow: -1px 0 #00000030, 0px 0px 20px rgb(1 1 1 / 16%), 0px 0px 10px rgb(0 0 0 / 93%) !important;
+    .home-section .section .selector {
+        background-color: var(--newtab-element-secondary-color) !important;
+        border-color: transparent !important;
+        border-radius: 4px !important; 
     }
 
-/* --------------------------------------------- Cuadro de búsqueda ------------------------------------------------- */
-    
-/* Ponemos el ícono (google) del buscador */
-    
-.search-wrapper input {
-    background: var(--newtab-search-icon) no-repeat center left 12px !important;
-    background-size: 26px 26px !important;
-    border: none !important;
+    .home-section .section .selector:hover {
+        background-color: var(--button-active-bgcolor) !important;
+        border-color: var(--button-hover-bgcolor) !important;
+        color: white !important;
     }
+    
+    /* Checkbox color for 'sponsored sites' */
+
+    .sponsored-checkbox:is(:checked):hover, .sponsored-checkbox:not(:checked):hover{ 
+        background-color: var(--button-hover-bgcolor) !important;
+    }
+
+    /* Radiobutton color into "Customize" */
+
+    .toggle-button[aria-pressed="true"] {
+        background: var(--button-active-bgcolor) !important;
+    }
+    
+    .toggle-button[aria-pressed="false"] {
+        opacity: 0.7 !important;
+    }
+
+    .toggle-button[aria-pressed="true"]:enabled:hover {
+        background: var(--button-hover-bgcolor) !important;
+    }
+
+    .toggle-button:enabled:hover {
+        opacity: 1 !important;
+    }
+    
+    /* Shadow */
+    
+    .customize-menu.customize-animate-enter-done, .customize-menu.customize-animate-enter-active {
+        box-shadow: 0 0 0 1px #50505050, 0 0 4px 0px var(--contrast-color) !important;
+    }
+    
+    /* Separador*/
+    
+    .home-section .divider { 
+        border-color: #50505080 !important;
+        margin-inline: 0px !important;
+    }
+
+/* ___________________________________________________________ Search-bar ___________________________________________________________ */
     
 /* Ícono Lupa */
     
 .search-wrapper .search-button {
-    background: url(chrome://global/skin/icons/search-glass.svg) no-repeat center center !important;
     fill: var(--newtab-text-primary-color) !important;
-    background-size: 14px 14px !important;
-    padding-inline-end: 80px !important;
+    padding-inline: 30px !important;
+    border-radius: 0 34px 34px 0 !important;
+    }
+    
+ /* Put unloaded search engine icon */
+    
+.search-wrapper input {
+    background: var(--newtab-background-color-secondary) url(chrome://global/skin/icons/search-glass.svg) 16px center no-repeat !important;
     }
     
 .search-inner-wrapper{
     position: relative;
-    background-color: var(--newtab-pinnedsites-background) !important;
+    background: var(--newtab-pinnedsites-background) !important;
     opacity: var(--searchbar-on-off, 1) !important;
     display: var(--searchbar-display, flex) !important;
-    margin-top: 16px !important;
+    margin-top: 40px !important;
     outline: none !important;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
     }
@@ -347,12 +547,43 @@ input:focus-visible, input:focus-visible{
     backdrop-filter: none !important;
     }
     
-@supports -moz-bool-pref("browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar"){
-.search-inner-wrapper:not(:focus){
-    background: var(--newtab-pinnedsites-background) !important;
-    backdrop-filter: var(--personal-blur) !important;
-    filter: saturate(140%) !important;
-    }}
+/* Font color when using light wallpaper */
+        .lightWallpaper :is(.search-inner-wrapper input, .search-wrapper input, #newtab-search-text[Keepfocus="true"]){
+            color-scheme: light !important;
+            color: #101019 !important;
+        }
+        
+         /* Font color when using dark wallpaper */
+        .darkWallpaper :is(.search-inner-wrapper input, .search-wrapper input, #newtab-search-text[Keepfocus="true"]){
+            color-scheme: dark !important;
+            color: #eaeaea !important;
+        }
+    
+/* Estilo en la nueva version de la search-bar */
+    
+@media (-moz-bool-pref:"browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar"){
+    .search-inner-wrapper:not(:focus){
+        background: var(--newtab-pinnedsites-background) !important;
+        backdrop-filter: var(--personal-blur) !important;
+        filter: saturate(140%) !important;
+        }
+
+    .search-wrapper .search-inner-wrapper{
+        outline: 2px solid transparent !important;
+        outline-offset: -2px !important;
+        transition: background-color 0.2s ease, outline 0.2s ease !important;
+        }
+    .search-wrapper.fake-focus .search-inner-wrapper{
+        outline: 2px solid var(--general-color) !important;
+        transition: background-color 0.2s ease, outline 0.2s ease !important;
+        }
+    .search-wrapper .search-inner-wrapper:hover,
+    .search-wrapper.fake-focus .search-inner-wrapper{
+        background-color: color-mix(in srgb, var(--newtab-pinnedsites-background) 90%, var(--newtab-wordmark-color)) !important;
+        transition: background-color 0.2s ease, outline 0.2s ease !important;
+        transition-delay: 0.1s, 0ms !important;
+        }
+    }
     
 .search-inner-wrapper:is(:hover){
     border-radius: 34px !important;
@@ -361,7 +592,7 @@ input:focus-visible, input:focus-visible{
 .search-inner-wrapper:not(:focus) input, .search-wrapper:not(:active) input:focus{
     background-color: var(--newtab-pinnedsites-background) !important;
     backdrop-filter: var(--personal-blur) !important;
-    filter: saturate(140%) !important;
+    /*filter: saturate(140%) !important;/*/
     border-radius: 34px !important;
     }
     
@@ -371,12 +602,25 @@ input:focus-visible, input:focus-visible{
     box-shadow: none !important; 
     }
     
-.search-wrapper .search-inner-wrapper:active input, .search-wrapper input:focus {
-    outline: 1px solid var(--button-active-bgcolor) !important;
-    outline-offset: -1px !important;
+/* Animación clic search-bar */    
+.search-wrapper .search-inner-wrapper input, .search-wrapper input{
+    outline: 2px solid transparent !important;
+    outline-offset: -2px !important;
     border: transparent !important;
-    z-index: 1 !important;
+    margin-left: 1px !important;
+    transition: background-color 0.2s ease-out, outline 0.2s ease-out;
     }
+    
+.search-wrapper .search-inner-wrapper:is(:active,:focus-within) input, .search-wrapper input:focus {
+    outline: 2px solid var(--button-active-bgcolor) !important;
+    }
+    
+.search-wrapper .search-inner-wrapper:is(:hover,:focus-within) input, .search-wrapper input:hover {
+    background-color: color-mix(in srgb, var(--newtab-pinnedsites-background) 90%, var(--newtab-wordmark-color)) !important;
+    transition: background-color 0.2s ease-out, outline 0.2s ease-out;
+    transition-delay: 0.1s, 0ms !important;
+    }
+/* ------------------------------- */
     
 .search-wrapper .search-button:focus, .search-wrapper .search-button:hover {
     fill: white !important;
@@ -392,155 +636,189 @@ browser[primary="true"][tabDialogShowing="true"],
     filter: blur(10px)
     }
 
-/* --------------------------------------- Sitios anclados ---------------------------------------- */
+/* _____________________________________________________ Pinned sites ______________________________________________________ */
     
-/* Fondo pequeño de los favICON de los sitios anclados */
-    
-.top-site-icon{ background-color: transparent !important; }
+    /* Fondo pequeño de los favICON de los sitios anclados */
+
+    .top-site-icon{ background-color: transparent !important; }
    
-/* Pinned icon */
+    /* Pinned icon */
+
+    .top-site-outer .title span .icon.icon-pin-small { display: none !important; }
     
-.top-site-outer .title span .icon.icon-pin-small { display: none !important; }
-    
-/* Label - pinned site */
-    
-.top-site-outer .title  {
-    width: 80px !important;
-    font-weight: 501 !important;
-    font-size: 14px !important;
-    margin-top: -40px !important;
-    text-shadow: 1px -1px 2px color-mix(in srgb, var(--contrast-color) 60%, transparent) !important;
-    margin-inline: 10px !important;
+    /* Label - pinned site */
+
+    .top-site-outer .title  {
+        width: 80px !important;
+        font-size: 14px !important;
+        font-weight: 501 !important;
+        margin-top: -40px !important;
+        margin-inline: 10px !important;
+        text-shadow: 0px 0px 6px color-mix(in srgb, var(--contrast-color) 60%, transparent) !important;
     }
     
-.top-site-outer .title span {
-    color: var(--newtab-text-primary-color) !important;
+    .top-site-outer .title span {
+        color: var(--newtab-text-primary-color) !important;
     }
     
-/* Alinear los -sitios anclados- con -Actividad Reciente- */
-    
-.collapsible-section.top-sites{
+    /* Alinear los -sitios anclados- con -Actividad Reciente- */
+
+    .collapsible-section{
         margin-left: -12px !important;
     }
 
-/* Colores sitios anclados (fondo pequeño) */
+    /* Colores sitios anclados (fondo pequeño) */
     
-.top-site-outer .tile {
-    border-radius: 12px !important;
-    width: 100px !important;
-    height: 100px !important;
-    align-items: start !important;
-    padding-top: 12px !important;
-    outline: 1px solid #50505030 !important;
-    outline-offset: -1px !important;
-    background: var(--newtab-pinnedsites-background) !important;
-    backdrop-filter: var(--personal-blur) !important;
-    filter: saturate(140%) !important;
+    .top-site-outer .tile {
+        border-radius: 12px !important;
+        width: 100px !important;
+        height: 100px !important;
+        align-items: start !important;
+        padding-top: 12px !important;
+        outline: 1px solid #50505030 !important;
+        outline-offset: -1px !important;
+        background: var(--newtab-pinnedsites-background) !important;
+        backdrop-filter: var(--personal-blur) !important;
+        transition: background-color 0.2s ease;
     }
 
-/* Colores :hover sitios anclados (fondo más grande) */
-    
-.top-site-outer, .top-site-outer.active{
-    background-color: transparent !important;
-    backdrop-filter: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-    border: none !important;
+    /* Colores :hover sitios anclados (fondo más grande) */
+
+    .top-site-outer, .top-site-outer.active{
+        background-color: transparent !important;
+        border: none !important;
+        backdrop-filter: none !important;
     }
     
-/* Colores al pasar el mouse en :hover sobre los sitios anclados y actividad reciente */
+    /* Colores al pasar el mouse en :hover sobre los sitios anclados y actividad reciente */
     
-.top-site-outer:hover .tile, .card-outer:hover .card{
-    background-color: color-mix(in srgb, var(--newtab-pinnedsites-background)80%, var(--newtab-wordmark-color)) !important;
+    .top-site-outer:hover .tile, .card-outer:hover .card{
+        background-color: color-mix(in srgb, var(--newtab-pinnedsites-background) 90%, var(--newtab-wordmark-color)) !important;
+        transition: background-color 0.2s ease;
     }
     
-/* Quita el borde que aparece luego de dar clic a un sitio anclado y mover el mouse fuera */
+    /* Font color on 'hover' when using light wallpapers */
     
-.top-site-outer:is(:focus-within) .tile, .card-outer:is(.active,:focus-within) .card{
-    background-color: color-mix(in srgb, var(--newtab-pinnedsites-background)80%, var(--newtab-wordmark-color)) !important;
-    box-shadow: none !important;
+    .lightWallpaper .top-site-outer{
+        --contrast-color: white !important;
+    }
+    .lightWallpaper .top-site-outer:is(:hover, :active, .active) {
+        color-scheme: light;
     }
     
-.top-site-outer:is(:focus-within) .title, .card-outer:is(.active,:focus-within) .card{
-    text-decoration: underline !important;
+    /* Font color on 'hover' when using dark wallpapers */
+    
+    .darkWallpaper .top-site-outer{
+        --contrast-color: black !important;
+    }
+    .darkWallpaper .top-site-outer:is(:hover, :active, .active) {
+        color-scheme: dark;
     }
     
-/* Botón de editar sitio anclado */
-    
-.top-site-outer .context-menu-button {
-    background-image: url("../images/more.svg") !important;
-    background-color: transparent !important;
-    border-radius: 50% !important;
-    inset-inline-end: -10px !important;
-    top: 2px !important;
-    transition: opacity 200ms;
-    fill: var(--newtab-text-primary-color) !important;
+    /* Quita el borde que aparece luego de dar clic a un sitio anclado y mover el mouse fuera */
+
+    .top-site-outer:is(:focus-within) .tile, .card-outer:is(.active,:focus-within) .card{
+        background-color: color-mix(in srgb, var(--newtab-pinnedsites-background) 90%, var(--newtab-wordmark-color)) !important;
+        box-shadow: none !important;
     }
     
-.top-site-outer .context-menu-button:is(:hover, :focus) {
-    background-color: color-mix(in srgb, var(--contrast-color), transparent) !important;
-    transition: opacity 200ms;
-    fill: var(--newtab-text-primary-color) !important;
+    .top-site-outer:is(:focus-within) .title, .card-outer:is(.active,:focus-within) .card{
+        text-decoration: underline !important;
+    }    
+    
+/* ____________________________________________________ Recent Activity ____________________________________________________ */
+    
+    .card-outer .card {
+        background: var(--newtab-pinnedsites-background) !important;
+        backdrop-filter: var(--personal-blur) !important;
+        filter: saturate(140%) !important;
+        border-radius: 14px !important;
+        border: 1px solid #50505030 !important;
     }
     
-    
-/* -------------------------- Actividad reciente --------------------------- */
-    
-.card-outer .card {
-    background: var(--newtab-pinnedsites-background) !important;
-    backdrop-filter: var(--personal-blur) !important;
-    filter: saturate(140%) !important;
-    border-radius: 14px !important;
-    border: 1px solid #50505030 !important;
-}
-    
-.compact-cards .card-outer .card-preview-image-outer { 
-    border-radius: 14px 14px 0 0 !important; 
+    .compact-cards .card-outer .card-preview-image-outer { 
+        border-radius: 14px 14px 0 0 !important; 
     }
     
-.ds-highlights .section .section-list .card-outer .card-host-name {
-    text-shadow: 1px -1px 2px color-mix(in srgb, var(--contrast-color) 60%, transparent) !important;
-    color: var(--newtab-text-primary-color) !important;
+    /* Font color when using a light wallpaper */
+    .lightWallpaper :is(
+        .card-host-name,
+        .card-outer:not(.placeholder) .card-title,
+        .card-outer .icon) {
+        --contrast-color: white !important;
+        color-scheme: light !important;
+        color: #101019 !important;
     }
     
-.card-outer:not(.placeholder) .card-title {
-    text-shadow: 1px -1px 2px color-mix(in srgb, var(--contrast-color) 60%, transparent) !important;
-    color: var(--newtab-text-primary-color) !important;
+    /* Font color when using a light wallpaper */
+    .darkWallpaper :is(
+        .card-host-name,
+        .card-outer:not(.placeholder) .card-title,
+        .card-outer .icon) {
+        --contrast-color: black !important;
+        color-scheme: dark !important;
+        color: #eaeaea !important;
     }
     
-.card-outer:is(:hover, :focus, :active, :focus-within, .active):not(.placeholder) .card-title, 
-.card-outer:is(:hover, :focus, .active):not(.placeholder) .card-title {
-    --newtab-primary-action-background: blue !important;
-    color: var(--newtab-text-primary-color) !important;
-    text-shadow: 1px -1px 2px color-mix(in srgb, var(--contrast-color) 60%, transparent) !important;
-    text-decoration: underline !important;
+    .ds-highlights .section .section-list .card-outer .card-host-name {
+        text-shadow: 1px 1px 2px color-mix(in srgb, var(--contrast-color) 60%, transparent) !important;
     }
     
-.compact-cards .card-outer .card-context>.card-context-icon {
-    fill: var(--newtab-wordmark-color) !important;
-    opacity: 0.7 !important;
-    /*filter: drop-shadow( 0px 1px 0px var(--contrast-color)) !important;*/
+    .card-outer:not(.placeholder) .card-title {
+        text-shadow: 0px 0px 6px color-mix(in srgb, var(--contrast-color) 60%, transparent) !important;
     }
     
-/* Ícono de 3 puntos al hacerle hover y clic */
-    
-.card-outer .context-menu-button, .card-outer .context-menu-button:active, .card-outer .context-menu-button:focus{
-    margin-top: 15px !important;
-    margin-right: 16px !important;
-    background-image: url("../images/more.svg") !important;
-    background-color: color-mix(in srgb, var(--contrast-color) 70%, transparent) !important;
-    fill: var(--newtab-text-primary-color) !important;
-    border-color: #50505030 !important;
-    transition-delay: 0ms !important;
+    .card-outer:is(:hover, :focus, :active, :focus-within, .active):not(.placeholder) .card-title, 
+    .card-outer:is(:hover, :focus, .active):not(.placeholder) .card-title {
+        --newtab-primary-action-background: blue !important;
+        text-decoration: underline !important;
     }
     
-/* Fondo de <popup> al intentar eliminar un sitio anclado*/
+    .compact-cards .card-outer .card-context>.card-context-icon {
+        fill: var(--newtab-wordmark-color) !important;
+        opacity: 0.7 !important;
+        /*filter: drop-shadow( 0px 1px 0px var(--contrast-color)) !important;*/
+    }
+
+/* _______________________________________________________ 3 dot icon ______________________________________________________ */
     
-.modal{
-    backdrop-filter: var(--personal-blur) !important;
-    outline: 1px solid var(--contrast-color) !important;
-    }   
-}
+    /* 3 dot icon pinned sites */    
+    .card-outer .context-menu-button{
+        margin-top: 15px !important;
+        margin-right: 15px !important;
+        background-image: url("../icons/more.svg") !important;
+        border-radius: 50% !important;
+        border-color: #50505030 !important;
+        transition-delay: 0ms !important;
+    }
+    
+    /* 3 dot icon recent activity*/
+    .top-site-outer .context-menu-button {
+        background-image: url("../icons/more.svg") !important;
+        background-color: transparent !important;
+        border-radius: 50% !important;
+        inset-inline-end: 6px !important;
+        margin-block-start: 20px !important;
+        top: 2px !important;
+        transition: opacity 200ms;
+    }
+    
+    /*  3 dot icon on 'hover' and 'click' */
+    .card-outer .context-menu-button:is(:hover,[open], :active),  
+    .card-outer.active .context-menu-button,
+    .top-site-outer .context-menu-button:is(:hover, :focus) {
+        background-color: color-mix(in srgb, var(--contrast-color) 70%, transparent) !important;
+        transition: opacity 200ms;
+        fill: var(--newtab-text-primary-color) !important;
+    }
+    
+    /* Fondo de <popup> al intentar eliminar un sitio anclado*/
+
+    .modal{
+        backdrop-filter: var(--personal-blur) !important;
+        outline: 1px solid var(--contrast-color) !important;
+        }
+    }
 
 /*---------------------------------- Pagina de Error al Cargar Página ---------------------------------------------*/
 
@@ -621,20 +899,25 @@ body{
     }
     
 .wordmark {
-    background: url("../images/floorp-wordmark.svg") no-repeat center center !important;
-    background-size: 140px !important;
-    width: 140px !important;
-    margin-left: 20px !important;
+    background: url("../icons/firefox-wordmark-private.svg") no-repeat center center !important;
     Opacity: var(--logo-wordmark-visibility) !important;
     display: var(--logo-wordmark-display) !important;
-    fill: var(--purple) !important;
     }
 }
 
 /*..........................................Firefox--------------------------------------------
 ---------------------------------------------view-----------------------------------------------*/
 
-@-moz-document url(about:firefoxview), url(about:firefoxview-next) /*, regexp("^about:.*") */ {
+@-moz-document regexp("^about:firefoxview.*") /*, regexp("^about:.*") */ {
+    
+    :root{
+        --fxview-primary-action-background: transparent !important;                     /* Background categoría seleccionada */
+        --fxview-element-background-hover: var(--button-hover-bgcolor) !important;      /* contextual menu :hover item */
+        --fxview-element-background-active: var(--button-active-bgcolor) !important;    /* contextual menu :active item */
+        --fxview-border: var(--fxview-primary-action-background) !important;
+        --fxview-background-color: transparent !important;
+        --opaque: color-mix(in srgb, var(--in-content-page-background) 70%, transparent) !important;
+    }
     
     @media (prefers-color-scheme: dark) {
   :host, :root {
@@ -660,12 +943,31 @@ body{
         }
     }
     
-    .synced-tab-a{
-        border-color: var(--in-content-box-border-color) !important;
+    body, .sticky-container{
+    --bg: var(--lwt-main-image);
+    background-image: linear-gradient(var(--opaque), var(--opaque)),
+                      linear-gradient(var(--opaque), var(--opaque)), 
+                      var(--bg) !important;
+    background-repeat: repeat !important;
+    background-size: cover !important;
+    background-attachment: fixed !important;
+    background-position-y: var(--background-align-y) !important;
+    backdrop-filter: var(--brightness-wallpaper) !important;
     }
     
-    .synced-tab-a:hover {
-        border-color: var(--general-color) !important;
-        box-shadow: 0px 2px 14px var(--button-bgcolor) !important;
+    .sticky-container{
+        margin-block-end: 10px !important;
+        box-shadow: 0 4px 10px var(--in-content-page-background) !important;
+        clip-path: polygon(0 0, 100% 0, 100% calc(100% + 10px), 0 calc(100% + 10px));
+    }
+    
+    button[selected] {
+        transition-duration: 0ms !important;
+    }
+    
+    .search-container input:focus{
+      &:focus-visible {
+        border: none !important;
+        }
     }
 }

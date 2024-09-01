@@ -3,7 +3,7 @@
 
 /* ____________________________ Selected tab gradient border on solid themes ____________________________ */
 
-@supports -moz-bool-pref("floorpone.selected-tab-gradient-border") {
+@media (-moz-bool-pref:"floorpone.selected-tab-gradient-border") {
 
     /* Sobreescribir lines from one_tabs-bar.css */
     #tabbrowser-tabs:is([movingtab]) .tabbrowser-tab[selected="true"] .tab-content{
@@ -51,12 +51,12 @@
 
 /* ___________________________________________ Image in menus ___________________________________________ */
 
-@supports -moz-bool-pref("floorpone.image-in-menus") {
+@media (-moz-bool-pref:"floorpone.image-in-menus") {
     
     /* Image for solid themes */    
     :root:not([style*="--lwt-additional-images"],[lwtheme-image]) :is(slot, panelview, menupopup),
     :root:not([style*="--lwt-additional-images"],[lwtheme-image]):is([sizemode="maximized"]) #PanelUI-menu-button{
-        --lwt-header-image: url("../images/newtab/menu-image.png") !important;
+        --lwt-header-image: url("../newtab/menu-image.png") !important;
     }
 
     @media (prefers-color-scheme: dark){
@@ -87,32 +87,32 @@
                               var(--lwt-header-image, var(--lwt-additional-images, none)) !important;
             background-size: auto 100vh !important;
             background-position-x: 0px !important;
-            background-position-y: -8px !important;
+            background-position-y: -5px !important;
     }}
     
     @media (-moz-platform: windows), (-moz-platform: linux) {
         :root:not([chromehidden~="toolbar"]):is([sizemode="maximized"]) #PanelUI-menu-button[open]>stack::after{
-            background-position-x: calc(0px - var(--my-vertical-toolbar-width, 0) + var(--margin-left-icons-personal)*2) !important;
-            background-position-y: -10px !important;
+            background-position-x: calc(-10px - var(--margin-left-icons-personal) - var(--margin-right-icons-personal)) !important;
+            background-position-y: -11px !important;
     }}
     
-    /* Alinear imagen con floorp-sidebar deshabilitada */
-
+    /* Alinear imagen con left-sidebar deshabilitada */
+    @media (-moz-bool-pref:"floorpone.style_without_leftsidebar") {
     @media (-moz-platform: windows), (-moz-platform: linux) {
-        :root[invisibleBMS]:not([chromehidden~="toolbar"]):is([sizemode="maximized"]) #PanelUI-menu-button[open]>.toolbarbutton-badge-stack,
-        :root[invisibleBMS]:not([chromehidden~="toolbar"]):is([sizemode="maximized"]) #PanelUI-menu-button[open]>stack::after{
+        :root:not([chromehidden~="toolbar"]):is([sizemode="maximized"]) #PanelUI-menu-button[open]>.toolbarbutton-badge-stack,
+        :root:not([chromehidden~="toolbar"]):is([sizemode="maximized"]) #PanelUI-menu-button[open]>stack::after{
             background-position-x: 0px !important;
-            background-position-y: -2px !important;
+            background-position-y: 0px !important;
         }
-        :root[invisibleBMS]:not([chromehidden~="toolbar"]):is([sizemode="maximized"]) #PanelUI-menu-button[open]>stack::after{
-            background-position-x: -30px !important;
+        :root:not([chromehidden~="toolbar"]):is([sizemode="maximized"]) #PanelUI-menu-button[open]>stack::after{
+            background-position-x: -24px !important;
             background-position-y: -4px !important;
-        }}
+        }}}
 }
 
 /* ______________________________________ Rhythm image for tab with sound _______________________________________ */
 
-@supports -moz-bool-pref("floorpone.rhythm-sound-tab") {
+@media (-moz-bool-pref:"floorpone.rhythm-sound-tab") {
     
     tab[soundplaying]:not([pinned]) .tab-background::before{
         content: "" !important; 
@@ -122,7 +122,7 @@
     
     @media (prefers-color-scheme: dark){
         tab[soundplaying]:not([pinned]) .tab-background::before{
-            background: url("../images/Beats.webp") no-repeat left center !important;
+            background: url("../icons/Beats.webp") no-repeat left center !important;
             background-size: 22px 16px !important;
             width: 22px !important;
             height: 16px !important;
@@ -132,7 +132,7 @@
 
     @media (prefers-color-scheme: light){
         tab[soundplaying]:not([pinned]) .tab-background::before{
-            background: url("../images/Beats.gif") repeat left center !important;
+            background: url("../icons/Beats.gif") repeat left center !important;
             background-size: 16px 16px !important;
             margin-inline-start: 6px !important;
             margin-block-start: calc(var(--tab-height-personal)/2 + 3px)  !important;
@@ -141,7 +141,7 @@
     }}
     
     /* Fix for tab_gradient_border config */
-    @supports -moz-bool-pref("floorpone.selected-tab-gradient-border") {
+    @media (-moz-bool-pref:"floorpone.selected-tab-gradient-border") {
         @media (prefers-color-scheme: dark){
            tab[soundplaying][selected]:not([pinned]) .tab-background::before{
                 margin-inline-start: 4px !important;
@@ -156,9 +156,11 @@
 
 /* ____________________________________________ Main-Image config ____________________________________________ */
 
-@supports -moz-bool-pref("floorpone.main-image") {
+/* ____________________________________________ Main-Image config ____________________________________________ */
 
-/* Sombra en la pestaña activa  eleminada */
+@media (-moz-bool-pref:"floorpone.main-image") {
+
+/* Sombra en la pestaña activa  eliminada */
     :root:not([lwtheme-image],[style*="--lwt-additional-images"]) .tabbrowser-tab[selected="true"]:not([multiselected]) .tab-stack {
             box-shadow: none !important; }
     
@@ -167,21 +169,48 @@
     tab[selected] .tab-background{
         outline: 1px solid var(--identity-tab-color, var(--button-active-bgcolor)) !important;
         outline-offset: -1px !important;
-        }}  
-
-/* Alineamos la imagen correctamente cuando se usa floorp-sidebar */
-:root:not([chromehidden~="toolbar"],[invisibleBMS],[sizemode="fullscreen"]) #sidebar-select-box,
-:root:not([chromehidden~="toolbar"],[invisibleBMS],[sizemode="fullscreen"]) #sidebar-select-box:is([style*="overflow: hidden auto; order: 0;"]){
-        background-position: -4px -8px !important;
-        background-size: auto auto !important;
+        }}
+    :root:not([chromehidden~="toolbar"]):is([lwtheme-image],[style*="--lwt-additional-images"]) tab[selected] .tab-background,
+    tab[selected] .tab-background{
+        background-image: linear-gradient(var(--toolbar-bgcolor, transparent), var(--toolbar-bgcolor, transparent)), 
+                          var(--lwt-additional-images,none), var(--lwt-header-image, none) !important;
+        background-repeat: no-repeat !important;
+        background-size: calc(100% + 0px) auto !important;
+        background-attachment: fixed !important;
+        background-color: transparent !important;
+        outline: 1px solid var(--identity-tab-color, var(--button-active-bgcolor)) !important;
+        outline-offset: -1px !important;
+        z-index: 1 !important;
+    }
+    
+    #nav-bar, #PersonalToolbar{
+        background-repeat: repeat-x, var(--lwt-background-tiling), no-repeat !important;
+        background-size: calc(100% + 0px) auto !important;
+        background-position: right top !important;
+        background-attachment: fixed !important;
+        background-color: transparent !important;
     }
 
+/* Alineamos la imagen correctamente cuando se usa left-sidebar */
+@media not (-moz-bool-pref:"firefoxone.style_without_leftsidebar") {
+    #PersonalToolbar,
+    :root:not([chromehidden~="toolbar"]):is([lwtheme-image],[style*="--lwt-additional-images"]) #PersonalToolbar{
+        background-repeat: repeat-x, var(--lwt-background-tiling), no-repeat !important;
+        background-size: calc(100% + /*var(--my-vertical-toolbar-width, 0px)*/ 0px) auto !important;
+        background-attachment: fixed !important;
+        background-position-x: right !important;
+        background-position-y: top !important;
+        backdrop-filter: var(--brightness-wallpaper) !important;
+    }}
+
 @media (prefers-color-scheme: dark){ 
-    :root,
-    :root:is([brighttext]):-moz-lwtheme,
+    :root[brighttext],
     :root[lwt-toolbar-field-focus-brighttext],
-    :root:-moz-lwtheme{
-    
+    :root[lwtheme],
+    :root:not([lwtheme]),
+    :root:is([style*="--lwt-additional-images"],[lwtheme-image]){
+        
+  --general-border-color: #50505040 !important;    
   --toolbar-field-background-color: transparent !important;                                                      /* toolbar_field */
   --toolbar-field-border-color: transparent !important;                                                          /* toolbar_field_border */
   --lwt-selected-tab-background-color: var(--toolbarbutton-hover-background) !important;                         /* tab_selected */
@@ -195,21 +224,19 @@
   --lwt-header-image: var(--lwt-main-image) !important; 
   --lwt-additional-images: var(--lwt-main-image) !important;
 
-    }
-    
-    :root:is(tab[selected] .tab-background, #nav-bar, findbar, #PersonalToolbar, #main-menubar, #sidebar-select-box, #statusBar),
-    :root:is([brighttext]):-moz-lwtheme :is(tab[selected] .tab-background, #nav-bar, findbar, #PersonalToolbar, #main-menubar, #sidebar-select-box, #statusBar),
-    :root[lwt-toolbar-field-focus-brighttext] :is(tab[selected] .tab-background, #nav-bar, findbar, #PersonalToolbar, #main-menubar, #sidebar-select-box, #statusBar),
-    :root:-moz-lwtheme :is(tab[selected] .tab-background, #nav-bar, findbar, #PersonalToolbar, #main-menubar, #sidebar-select-box, #statusBar){
+  :is(tab[selected] .tab-background, #nav-bar, findbar, #PersonalToolbar, #main-menubar, #sidebar-select-box, #statusBar) {
         --toolbar-bgcolor: #10101940 !important;                                                                 /* toolbar */
         }
-    }
+    }}
   
 @media (prefers-color-scheme: light){
-    :root,
     :root:not([lwtheme-brighttext="true"]),
-    :root:-moz-lwtheme{
-
+    :root:not([lwt-toolbar-field-focus-brighttext]),
+    :root[lwtheme],
+    :root:not([lwtheme]),
+    :root:is([style*="--lwt-additional-images"],[lwtheme-image]){
+        
+  --general-border-color: #50505080 !important;
   --toolbar-field-background-color: transparent !important;                                                      /* toolbar_field */
   --toolbar-field-border-color: transparent !important;                                                          /* toolbar_field_border */
   --lwt-selected-tab-background-color: var(--toolbarbutton-hover-background) !important;                         /* tab_selected */
@@ -223,12 +250,8 @@
   --lwt-header-image: var(--lwt-main-image) !important; 
   --lwt-additional-images: var(--lwt-main-image) !important;
 
-  }
-    :root:is(tab[selected] .tab-background, #nav-bar, findbar, #PersonalToolbar, #main-menubar, #sidebar-select-box, #statusBar),
-    :root:is([brighttext]):-moz-lwtheme :is(tab[selected] .tab-background, #nav-bar, findbar, #PersonalToolbar, #main-menubar, #sidebar-select-box, #statusBar),
-    :root[lwt-toolbar-field-focus-brighttext] :is(tab[selected] .tab-background, #nav-bar, findbar, #PersonalToolbar, #main-menubar, #sidebar-select-box, #statusBar),
-    :root:-moz-lwtheme :is(tab[selected] .tab-background, #nav-bar, findbar, #PersonalToolbar, #main-menubar, #sidebar-select-box, #statusBar){
+  :is(tab[selected] .tab-background, #nav-bar, findbar, #PersonalToolbar, #main-menubar, #sidebar-select-box, #statusBar) {
         --toolbar-bgcolor: #ffffff40 !important;                                                                 /* toolbar */
-        }
     }
+  }}
 }

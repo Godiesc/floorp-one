@@ -52,12 +52,18 @@
     :root:not([chromehidden~="toolbar"]) #PanelUI-menu-button {
         padding-inline: 4px !important;
     }
+    
+/* Remove transition */
+    
+    :root:not([chromehidden~="toolbar"]) #PanelUI-menu-button>.toolbarbutton-badge-stack{
+        transition-duration: 0ms !important;
+    }
 
 /* menu :hover y open */
 
     :root:not([chromehidden~="toolbar"]) #PanelUI-menu-button:not([open]):hover>.toolbarbutton-badge-stack {
         background-color: var(--toolbarbutton-hover-personal) !important;
-        border-radius: 7px !important;
+        border-radius: 8px !important;
     }
     
     :root:not([chromehidden~="toolbar"],[sizemode="normal"],[sizemode="fullscreen"]) 
@@ -72,12 +78,14 @@
             outline: 1px solid var(--arrowpanel-border-color) !important;
             outline-offset: -1px !important;
             box-shadow: -1px 0px var(--border-contrast-color)  !important;
+            border-radius: 8px !important;
     }
 
 /* Logo */
     
     :root:not([chromehidden~="toolbar"]) #PanelUI-menu-button {
-        list-style-image: url("chrome://branding/content/icon32.png") !important;
+        list-style-image: url("../icons/floorplogo.svg") !important;
+        fill: var(--general-color) !important;
     }
     
     :root:not([chromehidden~="toolbar"]) #PanelUI-menu-button image {
@@ -107,7 +115,7 @@
 /* Padding top para hacer espacio para la fila del Label menú */
     
     :root:not([chromehidden~="toolbar"])[sizemode="maximized"] #appMenu-popup>panelmultiview>box>box>panelview {
-        padding-top: calc(var(--tab-height-personal) + 2px) !important;
+        padding-top: calc(var(--tab-height-personal) - 2px) !important;
     }
     
 /* Margin top para subir el menú [open] */
@@ -115,10 +123,10 @@
     :root:not([chromehidden~="toolbar"])[sizemode="maximized"] #appMenu-popup {
         --menu-plus-label-width: 74px !important;
         appearance: none !important;
-        margin-top: calc(-8px - var(--tab-height-personal)) !important;
+        margin-top: calc(-6px - var(--tab-height-personal)) !important;
         padding-inline-start: 4px !important;
-        clip-path: polygon(0% 0%, 0% 100%, 1% 53%, 0 10px, calc(var(--menu-plus-label-width) + 4px) 10px,
-               calc(var(--menu-plus-label-width) + 4px) calc(var(--tab-height-personal) + 2px), 0 calc(var(--tab-height-personal) + 2px), 0 100%, 100% 100%, 100% 0%);
+        clip-path: polygon(0% 0%, 0% 100%, 1% 53%, 0 8px, calc(var(--menu-plus-label-width) + 4px) 8px,
+               calc(var(--menu-plus-label-width) + 4px) calc(var(--tab-height-personal) + 0px), 0 calc(var(--tab-height-personal) + 0px), 0 100%, 100% 100%, 100% 0%);
         --arrowpanel-menuitem-padding: 6px !important;
         --arrowpanel-border-radius: 8px !important;
         --panel-separator-margin-horizontal: 0px !important;

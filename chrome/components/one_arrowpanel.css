@@ -36,16 +36,6 @@ panelview {
     margin-inline: -6px !important;
 }
 
-#BMB_bookmarksPopup {
-    margin-top: -3px !important;
-    margin-inline: -6px !important;
-}
-
-/*  panel[type="arrow"]{ 
-    margin-top: 0px !important;
-    margin-left: initial !important; }
-*/
-
 addon-install-confirmation-notification {
     margin-inline: 1px !important;
 }
@@ -100,6 +90,7 @@ toolbarseparator {
 
 #PlacesToolbarItems toolbarseparator {
     border-image: none !important;
+    color: var(--toolbarbutton-active-background) !important;
 }
 
 /* Color label deshabilitado y elementos de: "protección contra rastreo" */
@@ -167,97 +158,24 @@ toolbar .text-link:-moz-lwtheme:hover, panel .text-link:-moz-lwtheme:hover {
     padding: 0.62em 0.0em 0.62em 0em !important;
 }
 
-/* ____________ sidebar de Firefox _____________ */
-
-:root:not([sizemode="fullscreen"]) #sidebar-box {
-    margin-block: 1px 4px !important;
-    margin-inline: 4px 0px !important;
-    border-radius: 8px !important;
-}
-
-#sidebar-box {
-    max-width: none !important;
-    min-width: 30px !important;
-    z-index: 1 !important;
-    outline: 3px solid var(--lwt-frame) !important;
-}
-
-/* Header sidebar */
-
-#sidebar-header, #bookmarksPanel{
-    background-color: var(--lwt-sidebar-background-color) !important;
-    padding: 4px 6px !important;
-}
-
-:root:not([sizemode="fullscreen"]) #sidebar-header{
-    border-radius: 8px 8px 0 0 !important;
-}
-
-#browser {
-  --sidebar-border-color: color-mix(in srgb, var(--lwt-frame) 90%, var(--lwt-tab-text)) !important;
-}
-
-/* Contenido de la sidedar */
-
-:root:not([sizemode="fullscreen"]) #sidebar{
-    border-radius: 0 0 8px 8px !important;
-}
-
-/* splitter - Borde para redimensionar la sidebar */
-
-.sidebar-splitter {
-    border-color: transparent !important;
-    border-width: 0px !important;
-}
-
-/* Espacios de la sidebar[open] y más espacio para el splitter - <left> <right> side 
-
-:root:not([sizemode="fullscreen"]) #sidebar-box[checked="true"] + #sidebar-splitter + #appcontent .browserContainer {
-    padding: 2px 5px 5px 1px !important;
-}
-
-:root:not([sizemode="fullscreen"]) #sidebar-box[checked="true"][positionend="true"] + #sidebar-splitter + #appcontent .browserContainer {
-    padding: 2px 0px 5px 5px !important;
-}
-
-:root:not([sizemode="fullscreen"]) #sidebar-box[positionend="true"]{
-    margin-inline: 2px 5px !important;
-}*/
-
-/* Default sidebar on right */
-
-:root:not([sizemode="fullscreen"]) #sidebar-box:is([style*="order: 6;"]){
-    padding: 0px 0px 0px 0px !important;
-    margin-left: 0px !important;
-}
-
-/*
-:root:not([sizemode="fullscreen"]) #sidebar-box[checked="true"]:is([style*="order: 6;"]) + #sidebar-splitter + #appcontent .browserContainer {
-    padding: 2px 0px 5px 5px !important;    
-}*/
-
-@media (-moz-platform: linux) {
-#sidebar-splitter{
-    background-color: transparent !important;
-    margin-right: -4px !important;
-    }}
-
 /* Linea Separadora */
 
 treechildren::-moz-tree-separator {
-    border-bottom: none !important;
+    border-block-end: none !important;
 }
 
-/* menú desplegable boton de la toolbar que muestra todos los marcadores */
-
-#BMB_bookmarksPopup > .menupopup-arrowscrollbox {
-    margin: 0px !important;
-    margin-inline-end: 0px !important;
-}
+/* Separador menús dentro de las carpetas de marcadores */
 
 #PlacesToolbar menupopup[placespopup="true"] menuseparator {
-    margin-left: 6px !important;
-    margin-right: 8px !important;
+    margin-left: -4px !important;
+    margin-right: 0px !important;
+}
+
+/* 'Monitor' and 'Relay' items from account dropdown menu */
+
+#PanelUI-fxa-cta-menu .fxa-cta-button {
+    margin: var(--space-xsmall) 0px var(--space-xsmall) 0px !important;
+    padding-inline-start: 4px !important;
 }
 
 /* Botón flecha atrás */
@@ -309,3 +227,124 @@ treechildren::-moz-tree-separator {
 #appMenu-zoomReset-button2[disabled]:hover .toolbarbutton-text, #zoom-reset-button[disabled]:hover .toolbarbutton-text {
     color: initial !important;
 }
+
+/*  _______________________________________________________ Rounded corner in pages _______________________________________________________ */
+
+/* Nuevo espacio alrededor del contenido web */
+
+:root:not([sizemode="fullscreen"]) .browserContainer {
+    padding: 1px 4px 4px 4px !important;
+}
+
+/* Bug fix - remove extra margins on sidebar2box web content */
+
+#sidebar2-box .webpanels.isWeb:not(.isExtension) {
+    padding-top: 4px !important;
+    margin-inline: -4px !important;
+    margin-block: -4px !important;
+}
+
+/* Color tras toda la página web */
+
+.browserContainer, .browserStack, #browser {
+    background-color: var(--lwt-frame) !important;
+}   
+
+:root:not([sizemode="fullscreen"]) .browserStack>browser{
+    background-color: var(--lwt-frame) !important;
+    border-radius: 8px !important;
+    outline: 1px solid color-mix(in srgb, var(--lwt-frame) 94%, var(--lwt-tab-text)) !important;
+    outline-offset: -1px !important;
+    clip-path: xywh(0 0 100% 100% round 9px);
+}
+
+:root:not([sizemode="fullscreen"]) findbar{ 
+    border-radius: 8px !important; 
+    margin-block-start: 4px !important; 
+}
+
+/* Corners en ventanas emergentes */
+
+:root:is([chromehidden~="toolbar"]) #nav-bar{
+    margin-block-start: 4px !important;
+    margin-inline-end: 4px !important;
+    border-radius: 8px 8px 0 0  !important;
+}
+
+:root:is([chromehidden~="toolbar"]) .browserStack>browser{
+    margin-block-start: -2px !important; 
+    outline: 1px solid var(--content-border-color) !important;
+    outline-offset: -1px !important;
+    border-radius: 0 0 8px 8px !important;
+    clip-path: none !important;
+}
+
+/* ________________________________________________ Firefox Sidebar and (Rounded corners) ________________________________________________ */
+
+:root:not([sizemode="fullscreen"]) {
+    
+    /* Tamaño, margen y color de borde */
+    #sidebar-box{
+        max-width: none !important;
+        min-width: 0px !important;
+        margin-block: 1px 4px !important;
+        margin-inline: 4px 0px !important;
+        outline: 1px solid var(--content-border-color) !important;
+        outline-offset: -1px !important;
+        clip-path: xywh(0 0 100% 100% round 8px);
+    }
+    
+    /* Border color sidebar2-box */
+    #sidebar2-box{
+        outline: 1px solid var(--content-border-color) !important;
+        outline-offset: -1px !important;
+        clip-path: xywh(0 0 100% 100% round 8px);
+    }
+    
+    /* Border redondeado */
+    #sidebar-box box { border-radius: 10px 10px 0 0 !important; }
+    #sidebar-box browser { border-radius: 0 0 8px 8px !important; }
+    #sidebar-box { border-radius: 8px !important; }
+}
+
+/* Header sidebar */
+
+#sidebar-header, #bookmarksPanel{
+    background-color: var(--lwt-sidebar-background-color) !important;
+    padding-block: 3px !important;
+    font-size: small !important;
+}
+
+#browser {
+   --sidebar-border-color: var(--lwt-frame) !important;
+}
+
+/* splitter - Borde para redimensionar la sidebar */
+
+:root:not([sizemode="fullscreen"]) .sidebar-splitter {
+    border-color: transparent !important;
+    border-width: 2px !important;
+}
+
+/* _________________________________________ Nuevo espacio alrededor del contenido web _________________________________________ */
+
+/* firefox-sidebar on left + web content */
+:root:not([sizemode="fullscreen"]) #sidebar-box:not([positionend="true"])[checked="true"] ~ #appcontent .browserContainer {
+    padding: 1px 4px 4px 0px !important;
+}
+
+/* firefox-sidebar on right + web content */
+:root:not([sizemode="fullscreen"])[invisibleBMS] #sidebar-box[checked="true"][positionend="true"] ~ #appcontent .browserContainer {
+    padding: 1px 4px 4px 4px !important;
+}
+
+/* New margin Firefox-sidebar on right - overwrite code from above */
+:root:not([sizemode="fullscreen"]) #sidebar-box[positionend="true"]{
+    margin-inline: 0px !important;
+}
+
+@media (-moz-platform: linux) {
+#sidebar-splitter{
+    background-color: transparent !important;
+    margin-right: -4px !important;
+    }}

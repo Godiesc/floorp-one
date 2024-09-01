@@ -7,7 +7,7 @@
 
 /* Floorp-sidebar on left */
 
-:root:not([chromehidden~="toolbar"],[invisibleBMS],[sizemode="fullscreen"]) #sidebar-select-box:is([style*="overflow: hidden auto; order: 0;"]) {
+:root:not([chromehidden~="toolbar"],[invisibleBMS],[sizemode="fullscreen"]) #sidebar-select-box {
     
     scrollbar-width: none !important;
     position: absolute !important;
@@ -41,28 +41,28 @@
 /* Outline en tema que tienen imágenes */
 
 :root:not([chromehidden~="toolbar"],[invisibleBMS],[sizemode="fullscreen"]):is([lwtheme-image],[style*="--lwt-additional-images"])
-    #sidebar-select-box:is([style*="overflow: hidden auto; order: 0;"]){
+    #sidebar-select-box{
         box-shadow: inset 1px 0 0 0 var(--lwt-frame), inset 1px 0 0 0 var(--lwt-frame), inset 1px 0 0 0 var(--lwt-frame),
                     inset 4px 0 var(--lwt-frame),
-                    inset 0px -1px 0 0  #50505040,  /* abajo */
-                    inset 5px 0 0 0  #50505040,     /* left */
-                    inset -1px 0 0 0 #50505040,     /* right */ 
-                    inset 0 1px 0 0  #50505040      /* Left */
+                    inset 0px -1px 0 0  var(--general-border-color),  /* abajo */
+                    inset 5px 0 0 0  var(--general-border-color),     /* left */
+                    inset -1px 0 0 0 var(--general-border-color),     /* right */ 
+                    inset 0 1px 0 0  var(--general-border-color)      /* Left */
                     !important;
         }
 
 /* outline en todos los temas "without-default-colors" config */
 
-@supports -moz-bool-pref("floorpone.without-default-colors") {
+@media (-moz-bool-pref:"floorpone.without-default-colors") {
     :root:not([chromehidden~="toolbar"],[invisibleBMS],[sizemode="fullscreen"]) 
-        #sidebar-select-box#sidebar-select-box:is([style*="overflow: hidden auto; order: 0;"]){
+        #sidebar-select-box{
             outline: none !important;
             box-shadow: inset 1px 0 0 0 var(--lwt-frame), inset 1px 0 0 0 var(--lwt-frame), inset 1px 0 0 0 var(--lwt-frame),
                         inset 4px 0 var(--lwt-frame),
-                        inset 0px -1px 0 0  #50505040,  /* abajo */
-                        inset 5px 0 0 0  #50505040,     /* left */
-                        inset -1px 0 0 0 #50505040,     /* right */ 
-                        inset 0 1px 0 0  #50505040      /* Left */
+                        inset 0px -1px 0 0  var(--general-border-color),  /* abajo */
+                        inset 5px 0 0 0  var(--general-border-color),     /* left */
+                        inset -1px 0 0 0 var(--general-border-color),     /* right */ 
+                        inset 0 1px 0 0  var(--general-border-color)      /* Left */
                         !important;
             }}
 
@@ -74,11 +74,11 @@
 
 :root:not([sizemode="fullscreen"],[invisibleBMS]) #sidebar2-box:not(splitter)    {
     background: var(--toolbar-bgcolor);
-    border: var(--toolbar-bgcolor) 0px solid !important;
+    border: 0px solid var(--toolbar-bgcolor) !important;
     border-radius: 8px !important;
     margin-inline-start: calc(var(--padding-left-tab) + 4px) !important;
     margin-block-end: 4px !important;
-    outline: 3px solid var(--lwt-frame  ) !important;
+    clip-path: xywh(0 0 100% 100% round 8px);
 }
 
 splitter {
@@ -105,33 +105,49 @@ splitter {
 /* floorp-sidebar on left - centrar íconos por el trick de clic on border */
 
 .sidepanel-icon, .sidepanel-browser-icon {
-    width: calc(var(--uc-vertical-toolbar-width,0) - 0px) !important;
-    max-width: calc(var(--uc-vertical-toolbar-width,0) - 0px) !important;
-    min-width: calc(var(--uc-vertical-toolbar-width,0) - 0px) !important;
+    width: calc(var(--my-vertical-toolbar-width,0) - 0px) !important;
     border: none !important;
-    margin-left: 0px !important;
     border-radius: 0px !important;
     margin: 2px 0px 2px 0px !important;
-    padding-inline-start: 14px !important;
+    padding-inline-start: calc(var(--my-vertical-toolbar-width) - 38px) !important;
     scale: 1.0 !important;
     transition-duration: 250ms !important;
 }
 
+/* Workspaces in left-sidebar */
+
+#workspacesBmsContent .toolbarbutton-1  .toolbarbutton-icon {
+    margin-inline: 6px !important;
+  }
+
+#workspacesBmsContent .workspaceButton[selected="true"] {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+#workspacesBmsContent .workspaceButton[selected="true"] .toolbarbutton-icon{
+    border-radius: 0.1px !important;
+    box-shadow: 0 0 0 8px var(--button-hover-bgcolor) , inset 0 0 0 3px var(--button-hover-bgcolor) !important;
+}
+
+#workspacesBmsContent .workspaceButton[selected="true"]:hover .toolbarbutton-icon{
+    box-shadow: 0 0 0 8px var(--button-active-bgcolor) , inset 0 0 0 3px var(--button-active-bgcolor) !important;
+}
+
 /* ïcono (+) de añadir sitio visible solo on :hover */
 
-#add-button:not(:hover){ opacity: 0 !important; }
+#sidebar-select-box :is(#workspacesCreateNewWorkspaceButton, #add-button):not(:hover){ opacity: 0 !important; }
 
 /* Fondo sitios Anclados */
 
 .sidepanel-icon.sicon-list.webpanel-icon::after{
     content: "";  display: -moz-box;  position: absolute !important;
     align-self: center !important;
-    height: 32px !important;
-    width: 20px !important;
+    height: calc(var(--my-vertical-toolbar-width) - 19px) !important;
+    width: calc(var(--my-vertical-toolbar-width) - 19px) !important;
     border-radius: 7px !important;
     background-color: var(--toolbarbutton-hover-background) !important;
     box-shadow: none !important;
-    padding-inline: 6px !important;
     z-index: -1 !important;
 }
 
@@ -141,8 +157,8 @@ splitter {
 .sidepanel-browser-icon:hover::after{
     content: "";  display: -moz-box;  position: absolute !important;
     align-self: center !important;
-    height: 30px !important;
-    width: 30px !important;
+    height: calc(var(--my-vertical-toolbar-width) - 20px) !important;
+    width: calc(var(--my-vertical-toolbar-width) - 20px) !important;
     border-radius: 7px !important;
     background-color: var(--toolbarbutton-hover-background) !important;
     z-index: -1 !important;
@@ -150,10 +166,10 @@ splitter {
 
 /* Zoom icon on :hover */
 
-.sidepanel-icon:hover > .toolbarbutton-icon, 
+.sidepanel-icon:hover:not([checked="true"], #workspacesBmsContent .workspaceButton[selected]) > .toolbarbutton-icon, 
 .sidepanel-browser-icon:hover> .toolbarbutton-icon {
-    scale: 1.18 !important;
-    transition-duration: 300ms !important;
+    scale: 1.2 !important;
+    transition-duration: 150ms !important;
     box-shadow: none !important;
 }
 
@@ -164,7 +180,7 @@ splitter {
     box-shadow: none !important;
 }
 
-/* Fondo [open] */
+/* Fondo colorido [open] */
 .sidepanel-icon:is([checked="true"]):not(:active).sicon-list.webpanel-icon::after,
 .sidepanel-icon:is([checked="true"])::after{
     background-color: var(--button-bgcolor) !important;
@@ -179,33 +195,33 @@ splitter {
 
 .sidepanel-icon:is([checked="true"]){ color: white !important; }
 
-/* Efecto clic botones */
+/* Efecto clic zoom botones */
 
-@keyframes scaleclick { 
-    0%{ transform:scale(0.8) } 
-    99%{ transform:scale(1.1) }
+@keyframes scaleclick10 { 
+    0%{ transform:scale(0.8) }
+    80%{ transform:scale(1.1) }
     100%{ transform:scale(1) }
 }
 
 .sidepanel-icon[checked="true"] > .toolbarbutton-icon{
     background-color: transparent !important;
     box-shadow: none !important;
-    animation: scaleclick 190ms !important;
-    scale: 1.0 !important;/**/
+    animation: scaleclick10 350ms ease-in-out !important;
+    scale: 1.0 !important;
 }
 
-.sidepanel-icon:not([checked="true"]):active > .toolbarbutton-icon, 
-.sidepanel-browser-icon:active > .toolbarbutton-icon, 
-.sidebar2-icon:active > .toolbarbutton-icon{
-    background-color: transparent !important;
-    scale: 1.0 !important;
-    transition-duration: 250ms !important;
+.sidepanel-icon:active:not([checked="true"], #workspacesBmsContent .workspaceButton[selected]) > .toolbarbutton-icon, 
+.sidepanel-browser-icon:active> .toolbarbutton-icon,
+.sidebar2-icon:active > .toolbarbutton-icon {
+    scale: 0.8 !important;
+    transition-duration: 50ms !important;
+    box-shadow: none !important;
 }
 
 /* Efecto clic background botones */
 
-@keyframes scale-up-center{
-    0%{ background-color: color-mix(in srgb, transparent 78%, white);
+@keyframes scale-up-center {
+    0%{ background-color: color-mix(in srgb, transparent 60%, white);
         border-radius: 50%;
         width: 20px;
         height: 20px;} 
@@ -218,21 +234,25 @@ splitter {
         width: calc(var(--my-vertical-toolbar-width) + 20px);}
 }
 
-.sidepanel-icon:is([checked="true"]):not(:active)::before{
+.sidepanel-icon:is([checked="true"]):not(:active)::before {
     content: "";  display: -moz-box;  position: absolute !important;
     align-self: center !important;
     border-radius: 0px;
-    animation: scale-up-center 780ms !important;
+    animation: scale-up-center 1s !important;
 }
+
+.sidepanel-icon:active:not([checked="true"], #workspacesBmsContent .workspaceButton[selected]) > .toolbarbutton-icon, 
+.sidepanel-browser-icon:active> .toolbarbutton-icon,
+.sidebar2-icon:active > .toolbarbutton-icon {}
 
 /* Separadores */
 
-.sidepanel-icon.sicon-list:nth-child(6),
+.webpanel-icon:nth-child(6),
 #bottomButtonBox{
     margin-top: 40px !important;
 }
 
-/* --------------------------------------- Código general --------------------------- */
+/* ________________________________________________ Código general ________________________________________________ */
     
     :root:not([invisibleBMS]) {
     --uc-vertical-toolbar-width: var(--my-vertical-toolbar-width) !important;       /* Nuevo tamaño sidebar */
@@ -249,8 +269,8 @@ splitter {
 
     :root:not([chromehidden~="toolbar"],[sizemode="fullscreen"],[invisibleBMS],[customizing]) :is(#nav-bar, #PersonalToolbar) {
         border-radius: 8px !important;
-        margin-inline: calc(var(--padding-left-tab) + 4px) 4px !important;
-        margin-bottom: 2px !important;
+        margin-inline-start: calc(var(--padding-left-tab) + 4px) !important;
+        /*margin-bottom: 2px !important;/**/
     }
 
     :root:not([chromehidden~="toolbar"],[sizemode="fullscreen"],[invisibleBMS]) #tab-notification-deck {
@@ -272,29 +292,36 @@ splitter {
 
     .container.infobar::before{ display: none !important;  }
     
-/* ################################ Nuevo espacio alrededor del contenido web ################################ */
+/* _________________________________________ Nuevo espacio alrededor del contenido web _________________________________________ */
 
-    /* Espacio floorp-bar + contenido */
-    :root:not([sizemode="fullscreen"],[invisibleBMS]) #appcontent {
-        padding: 0px 4px 4px 0px !important;
-    }
-
-    /* Espacio firefox-sidebar */
-    :root:not([sizemode="fullscreen"],[invisibleBMS]) #sidebar-box {
-        margin: 0px 0px 4px 0px !important;
-    }
+:root:not([sizemode="fullscreen"],[invisibleBMS]){
     
-    /* sin floorp-sidebar: firefox-sidebar + webpage */
-
-    :root:not([sizemode="fullscreen"])[invisibleBMS] 
-        #sidebar-box[checked="true"]:is([style*="order: 3;"]) ~ #appcontent{
-            padding: 1px 4px 4px 0px !important;
+    /* Global web content pading */
+    .browserContainer {
+        padding: 2px 4px 4px 0px !important;
     }
+
+    /* firefox-sidebar on left + web content */
+    #sidebar-box:not([positionend="true"])[checked="true"] ~ #appcontent .browserContainer {
+        padding: 2px 4px 4px 0px !important;
+    }
+
+    /* New margin Firefox-sidebar on right - overwrite code from above */
+    #sidebar-box{
+        margin: 2px 0px 4px 0px !important;
+    }
+
+    /* Floorp-sidebar margins */
+    #sidebar2-box{
+        margin-block: 2px 4px !important;
+    }
+}
+/* ____________________________________________________________________________________________________________ */
 
     /* Corners en ventanas emergentes */
 
     :root:is([chromehidden~="toolbar"]):not([invisibleBMS]) .browserStack>browser{
-        margin: -2px 0px 0px 3px !important; 
+        margin: -2px 0px 0px 4px !important; 
         border-radius: 0 0 8px 8px !important;
         outline: none !important;
     }
@@ -317,10 +344,9 @@ splitter {
         background-color: var(--lwt-frame) !important;
     }
 
-/* ########################################### Nuevo Estilo -Botón Menu- cuando Floorp sidebar está activa  ########################################### 
-   ########################################### ------------------------------------------------------------ ########################################### */
+/* ____________________________________________________ Nuevo Estilo -Botón Menu- ____________________________________________________ */
     
-@supports (not -moz-bool-pref("floorpone.sidebar-on-right")) and ( not -moz-bool-pref("floorpone.tree-tabs" )){
+@media (not (-moz-bool-pref:"floorpone.sidebar-on-right")) and ( not (-moz-bool-pref:"floorpone.tree-tabs" )){
         
 @media (-moz-platform: windows), (-moz-platform: linux) {
     
@@ -381,15 +407,14 @@ splitter {
         --menu-plus-label-width: 94px !important;
         --button-height-personal: 33px !important;
         margin-top: calc(-6px - var(--button-height-personal)) !important;
-        clip-path: polygon(0% 0%, 0% 100%, 1% 53%, 0 13px, var(--menu-plus-label-width) 13px,
+        clip-path: polygon(0% 0%, 0% 100%, 1% 53%, 0 14px, var(--menu-plus-label-width) 14px,
                    var(--menu-plus-label-width) var(--button-height-personal), 0 var(--button-height-personal), 0 100%, 100% 100%, 100% 0%);
+        --arrowpanel-border-radius: 10px !important;
     }
   }
 }
 
-/* ################################################################# Extensiones ################################################################# 
-   ######################################### ------------------------------------------------------------ ######################################## */
-    
+/*  Extensiones  */    
     
     /* Ocultar contador cuando este es "0" */
 
@@ -419,183 +444,168 @@ splitter {
     }
 
 
-/* ########################################################### FLOORP-bar on right side ########################################################### */
+/* _______________________________________________________ FLOORP-bar on right side _______________________________________________________ */
 
-@supports -moz-bool-pref("floorpone.sidebar-on-right") {
+@media (-moz-bool-pref:"floorpone.sidebar-on-right") {
     
     /* Floorp-sidebar on right */
 
-:root:not([chromehidden~="toolbar"],[invisibleBMS],[sizemode="fullscreen"]) #sidebar-select-box:is([style*="overflow: hidden auto; order: 7;"]) {
-    
-    scrollbar-width: none !important;
-    position: relative !important;
-    display: flex !important;
-    --toolbarbutton-active-background: var(--general-color) !important;
-    --padding-top-left-sidebar: 0px !important;
-    --padding-bottom-left-sidebar: 8px !important;
+    :root:not([chromehidden~="toolbar"],[invisibleBMS],[sizemode="fullscreen"]) 
+        #sidebar-select-box:is([style*="order: 7;"]) {
 
-    background-color: var(--toolbar-bgcolor) !important;
-    background-image: linear-gradient(var(--toolbar-bgcolor, transparent), var(--toolbar-bgcolor, transparent)), 
-                      linear-gradient(transparent, transparent), 
-                      var(--lwt-header-image, var(--lwt-additional-images, none)) !important;
-    background-size: cover !important;
-    background-position: right top !important;
-    background-repeat: repeat !important;
-    top: 0px !important;
-    border: 0;
-    padding-top: var(--padding-top-left-sidebar) !important;
-    padding-bottom: var(--padding-bottom-left-sidebar) !important;
-    z-index: 1 !important;
-    border-radius: 8px !important;  
-    margin-inline-end: 0px !important;
-    margin-block-end: 4px !important;
-    min-width: var(--uc-vertical-toolbar-width) !important;
-    border-width: 0px !important;
-    
-    box-shadow: inset -1px 0 0 0 var(--lwt-frame), inset -1px 0 0 0 var(--lwt-frame), inset -1px 0 0 0 var(--lwt-frame),
-                inset -4px 0 var(--lwt-frame) !important;
-    
+        scrollbar-width: none !important;
+        position: relative !important;
+        display: flex !important;
+        --toolbarbutton-active-background: var(--general-color) !important;
+        --padding-top-left-sidebar: 0px !important;
+        --padding-bottom-left-sidebar: 8px !important;
+
+        background-color: var(--toolbar-bgcolor) !important;
+        background-image: linear-gradient(var(--toolbar-bgcolor, transparent), var(--toolbar-bgcolor, transparent)), 
+                          linear-gradient(transparent, transparent), 
+                          var(--lwt-header-image, var(--lwt-additional-images, none)) !important;
+        background-size: cover !important;
+        background-position: right top !important;
+        background-repeat: repeat !important;
+        top: 2px !important;
+        border: 0;
+        padding-top: var(--padding-top-left-sidebar) !important;
+        padding-bottom: var(--padding-bottom-left-sidebar) !important;
+        z-index: 1 !important;
+        border-radius: 8px !important;  
+        margin-inline-end: 0px !important;
+        margin-block-end: 4px !important;
+        min-width: var(--uc-vertical-toolbar-width) !important;
+        height: calc(100% - 6px) !important;
+        border-width: 0px !important;
+
+        box-shadow: inset -1px 0 0 0 var(--lwt-frame), inset -1px 0 0 0 var(--lwt-frame), inset -1px 0 0 0 var(--lwt-frame),
+                    inset -4px 0 var(--lwt-frame) !important;
     }
 
 :root:not([chromehidden~="toolbar"],[invisibleBMS],[sizemode="fullscreen"]):is([lwtheme-image],[style*="--lwt-additional-images"])
-    #sidebar-select-box:is([style*="overflow: hidden auto; order: 7;"]){
+    #sidebar-select-box:is([style*="order: 7;"]){
         box-shadow: inset -1px 0 0 0 var(--lwt-frame), inset -1px 0 0 0 var(--lwt-frame), inset -1px 0 0 0 var(--lwt-frame),
                     inset -4px 0 var(--lwt-frame),
-                    inset 1px 0 0 0  #50505040,     /* left */
-                    inset -5px 0 0 0 #50505040,     /* right trick */
-                    inset 0 -1px 0 0 #50505040,     /* bottom */ 
-                    inset 0 1px 0 0  #50505040      /* top */
+                    inset 1px 0 0 0  var(--general-border-color),     /* left */
+                    inset -5px 0 0 0 var(--general-border-color),     /* right trick */
+                    inset 0 -1px 0 0 var(--general-border-color),     /* bottom */ 
+                    inset 0 1px 0 0  var(--general-border-color)      /* top */
                     !important;
         }
     
 /* outline en todos los temas "without-default-colors" config */
 
-@supports -moz-bool-pref("floorpone.without-default-colors") {
+@media (-moz-bool-pref:"floorpone.without-default-colors") {
     :root:not([chromehidden~="toolbar"],[invisibleBMS],[sizemode="fullscreen"]) 
-        #sidebar-select-box#sidebar-select-box:is([style*="overflow: hidden auto; order: 7;"]){
+        #sidebar-select-box:is([style*="order: 7;"]){
             outline: none !important;
             box-shadow: inset -1px 0 0 0 var(--lwt-frame), inset -1px 0 0 0 var(--lwt-frame), inset -1px 0 0 0 var(--lwt-frame),
                     inset -4px 0 var(--lwt-frame),
-                    inset 1px 0 0 0  #50505040,     /* left */
-                    inset -5px 0 0 0 #50505040,     /* right trick */
-                    inset 0 -1px 0 0 #50505040,     /* bottom */ 
-                    inset 0 1px 0 0  #50505040      /* top */
+                    inset 1px 0 0 0  var(--general-border-color),     /* left */
+                    inset -5px 0 0 0 var(--general-border-color),     /* right trick */
+                    inset 0 -1px 0 0 var(--general-border-color),     /* bottom */ 
+                    inset 0 1px 0 0  var(--general-border-color)      /* top */
                     !important;
             }}
 
     /* floorp Sidebar close */
-:root:not([sizemode="fullscreen"],[invisibleBMS]) #sidebar2-box:is([style*="min-width: 0px; order: 6;"]):not(splitter),
-:root:not([sizemode="fullscreen"],[invisibleBMS]) #sidebar2-box:is([style*="min-width: 0px; max-width: 0px; order: 6;"]):not(splitter){
-    background: var(--toolbar-bgcolor);
-    border: var(--toolbar-bgcolor) 0px solid !important;
-    border-radius: 8px !important;
-    margin-inline-start: 0px !important;
-    margin-block-end: 4px !important;
-    outline: 3px solid var(--lwt-frame) !important;
-}
+    :root:not([sizemode="fullscreen"],[invisibleBMS]) {
+        
+        #sidebar2-box:is([style*="max-width: 0px;"])[style*="order: 5;"]:not(splitter){
+            margin-inline-start: 0px !important;
+        }
+        
     /* floorp-Sidebar open */
-:root:not([sizemode="fullscreen"],[invisibleBMS]) #sidebar2-box:is([style*="min-width: auto; order: 6;"]):not(splitter)    {
-    background: var(--toolbar-bgcolor);
-    border: var(--toolbar-bgcolor) 0px solid !important;
-    border-radius: 8px !important;
-    margin-inline: 0px 4px !important;
-    margin-block-end: 4px !important;
-    outline: 3px solid var(--lwt-frame) !important;
-}
+        #sidebar2-box:is([style*="min-width: auto;"][style*="order: 5;"]):not(splitter)    {
+            margin-inline: 0px 4px !important;
+    }}
+    
+    /* Bug fix - remove extra margins on sidebar2box web content */
+
+    #sidebar2-box .webpanels.isWeb:not(.isExtension) {
+        margin-inline-start: -8px !important;
+    }
 
 /* floorp-sidebar on right - centrar íconos por el trick de clic on border */
 
-#sidebar-select-box:is([style*="overflow: hidden auto; order: 7;"]) :is(.sidepanel-icon, .sidepanel-browser-icon) {
+#sidebar-select-box:is([style*="order: 7;"]) :is(.sidepanel-icon, .sidepanel-browser-icon) {
     width: calc(var(--uc-vertical-toolbar-width,0) - 0px) !important;
     max-width: calc(var(--uc-vertical-toolbar-width,0) - 0px) !important;
     min-width: calc(var(--uc-vertical-toolbar-width,0) - 0px) !important;
     border: none !important;
     margin-left: 0px !important;
     border-radius: 0px !important;
-    margin: 2px 0px 2px 0px !important;
     padding-inline-start: 0px !important;
     padding-inline-end: 4px !important;
     scale: 1.0 !important;
     transition-duration: 250ms !important;
 }
 
-/* ################################ Nuevo espacio alrededor del contenido web ################################ */
+/* ____________________________________________ Nuevo espacio alrededor del contenido web ____________________________________________ */
     
-/* Espacio firefox-sidebar */
-    :root:not([sizemode="fullscreen"],[invisibleBMS]) #sidebar-box:is([style*="order: 4;"]) {
-        margin: 0px 4px 4px 0px !important;
-    }
+    
+    :root:not([sizemode="fullscreen"],[invisibleBMS]) {
+    
+        /* Overwrite the code above - Espacio floorp-bar + contenido */
+        .browserContainer {
+            padding: 2px 4px 4px 4px !important;
+        }
+        
+        /* Espacio firefox-sidebar left */
+        #sidebar-box:is([style*="order: 3;"]) {
+            margin-inline: 4px 0px !important;
+        }
 
-/* Floorp-sidebar on right - Espacio floorp-bar(sidebar-open) + contenido */
-    :root:not([sizemode="fullscreen"],[invisibleBMS]) 
-    #sidebar-box:is([hidden="true"]) + #sidebar-splitter + 
-    #sidebar2-box:is([style*="min-width: auto; order: 6;"]) + #sidebar-splitter2 + #sidebar-select-box:is([style*="overflow: hidden auto; order: 7;"]) + #appcontent{
-        padding: 0px 0px 4px 4px !important;
-    }
+        /* Espacio firefox-sidebar right */
+        #sidebar-box[checked="true"][positionend="true"]:is([style*="order: 8;"]) {
+            margin-inline: 0px 4px !important;
+        }
     
-    /* Floorp-sidebar on right - firefox-sidebar off */
-    :root:not([sizemode="fullscreen"],[invisibleBMS]) 
+        /* Overwrite the code from 'one_arrowpanel.css' - Espacio firefox-sidebar */
+        #sidebar-box[checked="true"][positionend="true"] ~ #appcontent .browserContainer {
+            padding: 2px 0px 4px 4px !important;
+        }
+
+        /* Floorp-bar on right - floorp-sidebar(ON) + contenido */
         #sidebar-box:is([hidden="true"]) + #sidebar-splitter + 
-        #sidebar2-box + #sidebar-splitter2 + #sidebar-select-box:is([style*="overflow: hidden auto; order: 7;"]) + #appcontent{
-            padding: 0px 4px 4px 4px !important;
-    }
-
-    /* Floorp-sidebar on right: firefox-sidebar on left + web content */
-    :root:not([sizemode="fullscreen"],[invisibleBMS]) 
-        #sidebar-box[checked="true"][style*="order: 0;"]{
-            margin-left: 4px !important;
-    }
-
-    :root:not([sizemode="fullscreen"],[invisibleBMS]) 
-        #sidebar-box:is([checked="true"][style*="order: 0;"]) + #sidebar-splitter + 
-        #sidebar2-box + #sidebar-splitter2 + #sidebar-select-box:is([style*="overflow: hidden auto; order: 7;"]) + #appcontent{
-            padding: 0px 4px 4px 0px !important;
-    }
+        #sidebar2-box:is([style*="min-width: auto;"])[style*="order: 5;"] + #sidebar-splitter2 + 
+        #sidebar-select-box:is([style*="order: 7;"]) + #appcontent .browserContainer{
+            padding: 2px 0px 4px 4px !important;
+        }
     
-    /* Floorp-sidebar on right: firefox-sidebar on left + web content + floorp-sidebar */
-
-    :root:not([sizemode="fullscreen"],[invisibleBMS]) 
-        #sidebar-box:is([checked="true"][style*="order: 0;"]) + #sidebar-splitter + 
-        #sidebar2-box:is([style*="min-width: auto; order: 6;"]) + #sidebar-splitter2 + #sidebar-select-box:is([style*="overflow: hidden auto; order: 7;"]) + #appcontent{
-            padding: 0px 0px 4px 0px !important;
-    }
-
-    /* Floorp-sidebar on right: web content + firefox-sidebar on right */
-    :root:not([sizemode="fullscreen"],[invisibleBMS]) 
-        #browser:has(#sidebar2-box[style*="min-width: 0px; order: 6;"]) #sidebar-box[checked="true"][style*="order: 4;"]{
-            margin-right: 4px !important;
-    }
-
-    :root:not([sizemode="fullscreen"],[invisibleBMS]) 
-        #browser:has(#sidebar2-box[style*="min-width: auto; order: 6;"]) #sidebar-box[checked="true"][style*="order: 4;"]{
+        /* Floorp-bar on right: firefox-sidebar on left + web content + floorp-sidebar*/
+        #sidebar-box:is([checked="true"]):not([positionend="true"]) + #sidebar-splitter + 
+        #sidebar2-box:is([style*="min-width: auto;"][style*="order: 5;"]) + #sidebar-splitter2 + 
+        #sidebar-select-box:is([style*="order: 7;"]) + #appcontent .browserContainer{
+            padding: 2px 0px 4px 0px !important;
+        }
+    
+        /* Floorp-bar on right: web content + firefox-sidebar on right + floorp-sidebar(ON) */
+        :has(#sidebar2-box[style*="min-width: auto;"][style*="order: 5;"])
+        #sidebar-box[checked="true"][positionend="true"] {
             margin-right: 0px !important;
+        }
     }
 
-    :root:not([sizemode="fullscreen"],[invisibleBMS]) 
-        #sidebar-box[checked="true"] + #sidebar-splitter + 
-        #sidebar2-box + #sidebar-splitter2 + #sidebar-select-box:is([style*="overflow: hidden auto; order: 7;"]) + #appcontent{
-            padding: 0px 0px 4px 4px !important;
-    }
-}
+/* ____________________________________ Menu button y margenes nav-bar -floorpone.sidebar-on-right- ____________________________________ */
 
-/* ####################################################### MENU y margenes nav-bar -floorpone.sidebar-on-right- ####################################################### */
-
-@supports -moz-bool-pref("floorpone.sidebar-on-right") or -moz-bool-pref("floorpone.tree-tabs")  {
+@media (-moz-bool-pref:"floorpone.sidebar-on-right") or (-moz-bool-pref:"floorpone.tree-tabs")  {
     
-/* Quitamos margen izquierda ahora inneceario al estar la floorp-sidebar on right */
+    /* Quitamos margen izquierda ahora inneceario al estar la floorp-sidebar on right */
     
     :root:not([chromehidden~="toolbar"],[sizemode="fullscreen"],[invisibleBMS]) :is(#nav-bar, #PersonalToolbar) {
         margin-inline-start: 4px !important;
     }
     
-/*  MENU -floorpone.sidebar-on-right- */
+    /*  MENU -floorpone.sidebar-on-right- */
     
     :root:not([invisibleBMS]) {
         --margin-right-icons-personal: 8px !important;                                                 /* Nuevo margen-left del ícono -menu- */
         --padding-left-tab: 36px ;                                                                     /* Nuevo tamaño botón menú */
     }
     
-/* Status bar */
+    /* Status bar */
 
     :root:not([chromehidden~="toolbar"],[sizemode="fullscreen"],[invisibleBMS],[customizing]) #statusBar{
         margin-inline: 4px !important;

@@ -11,25 +11,24 @@
 
 findbar{
     background-image: linear-gradient(var(--toolbar-bgcolor, transparent), var(--toolbar-bgcolor, transparent)),
-                      linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), 
+                      linear-gradient(transparent, transparent), 
                       var(--lwt-header-image, var(--lwt-additional-images, none)) !important;
-    background-position: left top !important;
-    background-repeat: repeat !important;
-    background-size: var(--display-theme-with-images) !important;
+    background-position: right bottom, right bottom, right center, left center !important;
+    background-repeat: repeat, repeat, var(--lwt-background-tiling) !important;
+    background-size: auto !important;
     box-shadow: none !important;
-    z-index: 3 !important;
     color: var(--lwt-tab-text) !important;
     border: none !important;
-}
-
-:root:is([style*="--lwt-additional-images"],[lwtheme-image]) findbar{
-    outline: 1px solid color-mix(in srgb, var(--toolbar-bgcolor) 96%, var(--lwt-tab-text)) !important;
-    outline-offset: -1px !important;
 }
 
 .findbar-find-status[status="notfound"] {
     font-weight: 600 !important;
     text-decoration: underline !important;
+}
+
+.findbar-textbox {
+    border-color: transparent !important;
+    background-color:  var(--toolbarbutton-hover-personal) !important;
 }
 
 .findbar-textbox:focus {
@@ -47,7 +46,8 @@ findbar{
 /* "popup_highlight" ---> 1.- keyboard highlight ;  2.-mouse highlight */
 
 .urlbarView-row[selected], .urlbarView-row[row-selectable]:not([selected]):hover {
-    --urlbar-popup-url-color: #ffffff !important; 
+    --urlbar-popup-url-color: #ffffff !important;
+    color: #ffffff !important;
     background-color: var(--autocomplete-popup-hover-background) !important;
     --link-color: #ffffff !important;
     border-radius: 0px !important;
@@ -69,13 +69,6 @@ findbar{
     font-size: 1.0em !important;
 }
 
-/* tamaño letras urlbar */
-
-#urlbar-input {
-    font-weight: 501 !important;
-    opacity: 0.9 !important;
-}
-
 /* Sugerencias de búsqueda */
 
 .urlbarView {
@@ -93,7 +86,7 @@ findbar{
 }
 
 .urlbarView-row-inner {
-    padding-left: 14px !important;
+    padding-left: 8px !important;
 }
 
 #urlbar .search-panel-header {
@@ -109,7 +102,8 @@ findbar{
 #urlbar .searchbar-engine-one-off-item {
     border-radius: var(--toolbarbutton-border-radius) !important;
 }
-#urlbar .searchbar-engine-one-off-item:hover {
+.searchbar-engine-one-off-item:not([selected]):hover {
+    background-color: var(--button-hover-bgcolor) !important;
     color: #ffffff !important;
 }
 
@@ -118,12 +112,42 @@ findbar{
 }
 
 .urlbarView-favicon {
-    color: var(--lwt-tab-text) !important;
     padding: 6px !important;
     border-radius: 8px !important;
-    margin-top: -2px !important;
-    margin-bottom: -2px !important;
+    margin-block: -3px !important;
+    margin-inline-end: 6px !important;
     clip-path: circle(50%);
+}
+
+/* Sugerencias enriquecidas */
+
+.urlbarView-row[rich-suggestion] > .urlbarView-row-inner > .urlbarView-favicon {
+    max-height: 16px !important;
+    max-width: 16px !important;
+    margin-inline: 6px !important;
+}
+
+/* No hacer doble fila url results en cuadro pequeño */
+
+@media screen and (min-height: 600px) {
+  .urlbarView-results[wrap] > .urlbarView-row {
+    &:where(:not([rich-suggestion])) > .urlbarView-row-inner {
+      & > .urlbarView-no-wrap {
+        flex-basis: 0% !important;
+      }
+    }
+  }
+}
+
+/* Botón 'cambiar a pestaña' */
+
+.urlbarView-row:is([type="switchtab"], [type="remotetab"], [type="clipboard"]) {
+  & > .urlbarView-row-inner > .urlbarView-no-wrap > .urlbarView-action
+{
+    color: white !important;
+    padding-block: 3px 5px !important;
+    margin-block: -2px -3px !important;
+  }
 }
 
 /* Botones de acciones rápidas urlbar open */
@@ -164,7 +188,7 @@ findbar{
 #urlbar:not([open], [focused]) #urlbar-background {
     border-radius: 7px !important;
     transition: ease-in 150ms !important;
-    transition-delay: 80ms !important;
+    transition-delay: 100ms !important;
 }
 
 #urlbar:not([open], [focused]):hover #urlbar-background {
@@ -182,6 +206,7 @@ findbar{
 #urlbar[focused] #urlbar-background {
     border-radius: 7px !important;
     box-shadow: none !important;
+    transition: background-color 0.4s ease !important;
 }
 
 #urlbar[open] #urlbar-background {
@@ -206,36 +231,38 @@ findbar{
 
 /* Brighness when urlbar [open]*/
 
-#nav-bar[urlbar-exceeds-toolbar-bounds="true"]::before {
+#nav-bar::before {
     position: fixed;
     content: "";
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: transparent;
     z-index: 4;
     pointer-events: none;
+    transition: background-color 0.3s ease !important; 
 }
 
-/* Bordes de las toolbar cuando left-sidebar no es usada */
+#nav-bar[urlbar-exceeds-toolbar-bounds="true"]::before {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Margen de las toolbar cuando left-sidebar no es usada */
 
 #nav-bar, #PersonalToolbar {
     border-radius: 8px !important;
     margin-inline: 4px !important;
 }
 
-#nav-bar, #PersonalToolbar{
-    margin-block-end: 1px !important;
-}
-
 #PersonalToolbar{
-    padding-block: 1px !important;
+    margin-block-start: 1px !important;
     padding-inline: 1px !important;
+    padding-block: 1px !important;
 }
 
 :root:is([sizemode="fullscreen"]) #nav-bar{
-    margin-bottom: 2px !important;
+    margin-bottom: 1px !important;
 }
 
 /* Search-bar */
@@ -281,7 +308,7 @@ findbar{
 }
 
 #identity-box[pageproxystate="valid"].chromeUI #identity-icon {
-    list-style-image: url("../images/foxFill.svg") !important;
+        list-style-image: url("../icons/floorplogo.svg") !important;
     -moz-context-properties: fill !important;
     fill: var(--lwt-tab-text) !important;
     width: 15px !important;
@@ -463,46 +490,4 @@ description#identity-popup-content-owner-label, description#identity-popup-conte
 
 .urlbarView-type-icon {
     display: none !important;
-}
-
-/*  --------------------------------------- Rounded corner in pages --------------------------------------- */
-
-/* Nuevo espacio alrededor del contenido web */
-
-:root:not([sizemode="fullscreen"]) #appcontent {
-    padding: 1px 4px 4px 4px !important;
-}
-
-.browserStack>browser{
-    border-radius: 8px !important;
-    outline: 3px solid var(--lwt-frame) !important;
-}
-
-:root:is([sizemode="fullscreen"]) :is(.browserContainer,.browserStack>browser) {
-    padding: initial !important;
-    margin: initial !important;
-    border-radius: 0px !important;
-}
-
-findbar{ 
-    border-radius: 8px !important; 
-    margin: 4px 0px 0px 0px !important; 
-}
-
-.browserContainer, .browserStack, #browser{
-    background-color: var(--lwt-frame) !important;
-}
-
-/* Corners en ventanas emergentes */
-
-:root:is([chromehidden~="toolbar"]) #nav-bar{
-    margin-top: 4px !important;
-    margin-right: 4px !important;
-    border-radius: 8px 8px 0 0  !important;
-}
-
-:root:is([chromehidden~="toolbar"]) .browserStack>browser{
-    margin: -4px 0px 0px 0px !important; 
-    border-radius: 0 0 8px 8px !important;
-    outline: none !important;
 }
