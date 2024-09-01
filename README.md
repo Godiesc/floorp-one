@@ -3,7 +3,7 @@
 <ul><li>(ES) Tema para los amantes de la skin de Opera-ONE.</li>
 <li>(EN) A theme for Opera-ONE Skin Lovers.</li></ul>
 
-![floorpone-default](https://github.com/Godiesc/floorp-one/assets/22057609/ad6d5589-e3e9-4c29-a0d1-36044d54f18d)
+![imagen](https://github.com/user-attachments/assets/09c80fe5-1dc0-4dba-a803-ac943a6ebec5)
 
 ## ¿Cómo instalar? - How to install?
 
@@ -33,7 +33,7 @@
 ## Important Information 💎
 <p><b>Notice:</b></p>
 <ul>
-<li>For users that use floorp-bar in right side you have to add too this preference in <code>about:config</code> page.</code></li>
+<li>For users that use floorp-bar in right side you have to add too this preference in <code>about:config</code> page. ⚠⚠ Always at the start of floorp you should open 'Firefox sidebar' <img src="https://studio-assets.supernova.io/design-systems/18795/046089d3-db9e-4c37-93ac-6a647e3b58a6.svg" alt="Sidebar" width="24" height="24" /> to get all the element placed correctly.</li>
 <table><tr>
     <td>floorpone.sidebar-on-right</td>
     <td>true</td></tr>
@@ -91,12 +91,12 @@
 
 <b>Fondo Nueva Pestaña - NewTab Wallpaper</b>
 <ul>
-   <li><p>(Option 1) In the directory: <code>chrome/images/newtab</code> there is a set of wallpapers, the images that the theme will select by default are: <b><i>wallpaper-light.png</i></b> and <b><i>wallpaper-dark.png</i></b>, you could rename the images you want with that names and the theme will select them, you can add your own images. If you don't want a wallpaper just delete the files with the specified names. You can find more images in: <a href="https://imgur.com/a/j78IhJN"><b>This Gallery</b></a>. <b>Restarting the browser after changing the wallpaper is required. </b></p></li>
-<li><p>(Option 2) Editing the code <code>chrome/components/one_root-personal.css</code> lines: <code>19</code> and <code>24</code>.<p></li></ul></br>
+   <li><p>(Option 1) In the directory: <code>chrome/newtab</code> there is a set of wallpapers for dark and light scheme, you could rename the images you want with those names and the theme will show them in NewTab preferences ready to choose, you can add your own images. You can find more images in: <a href="https://imgur.com/a/j78IhJN"><b>This Gallery</b></a>. <b>Restarting the browser after changing the wallpaper is required. </b></p></li>
+<li><p>(Option 2) Editing the code <code>chrome/components/one_root-personal.css</code> lines: <code>20</code> and <code>32</code>.<p></li></ul></br>
 
 <b>Color Principal - Accent Color</b>
 <ul>
-<li><p>It has manual customization of the accent color for userContent.css (new-tab, preferences and add-ons page). The file in <code>chrome/components/one_root-personal.css</code> has the variable: <code>--general-color</code> to set the color, you could choose whatever you like. <b>Restarting the browser is required. </b></p></li></ul>
+<li><p>It has manual customization of the accent color for userContent.css (Preferences and add-ons page). The file in <code>chrome/components/one_root-personal.css</code> has the variable: <code>--general-color</code> to set the color, you could choose whatever you like. <b>Restarting the browser is required. </b></p></li></ul>
 
 ![Captura de pantalla 2022-06-05 155840](https://user-images.githubusercontent.com/22057609/172070426-0de79289-eaa3-4826-ac62-af6230cdf877.png)
 
@@ -118,7 +118,7 @@
 ## Related Topic - Tema relacionado
 Available [Floorp-GX theme](https://github.com/Godiesc/floorp-gx)
 
-![SplashPromocionalFirefoxGX](https://github.com/Godiesc/firefox-one/assets/22057609/00021921-72e9-439d-8314-920c4e6d42f1)
+<a href="https://github.com/Godiesc/floorp-gx"><img src="https://github.com/Godiesc/firefox-one/assets/22057609/00021921-72e9-439d-8314-920c4e6d42f1"></a>
 
 ## Example of about:support
 
